@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at top left, rgba(24, 215, 255, 0.16), transparent 34rem),
+    radial-gradient(ellipse at top right, rgba(141, 92, 255, 0.14), transparent 38rem),
+    linear-gradient(135deg, #04060d 0%, #071120 48%, #050712 100%);
+  color: #edf6ff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: rgba(24, 215, 255, 0.35);
+  color: #ffffff;
+}
+
+.ambient-shell {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background-image:
+    linear-gradient(115deg, rgba(24, 215, 255, 0.08), transparent 30%, rgba(141, 92, 255, 0.1) 70%, transparent),
+    linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+  background-size: auto, 42px 42px, 42px 42px;
+}
+
+.ambient-shell::after {
+  content: "";
+  position: absolute;
+  inset: -18%;
+  background: conic-gradient(from 180deg, rgba(24, 215, 255, 0.12), transparent, rgba(98, 255, 178, 0.08), transparent, rgba(141, 92, 255, 0.12));
+  filter: blur(96px);
+  opacity: 0.55;
+  animation: drift 18s ease-in-out infinite alternate;
+}
+
+@keyframes drift {
+  from {
+    transform: translate3d(-2%, -1%, 0) rotate(0deg);
+  }
+  to {
+    transform: translate3d(2%, 1%, 0) rotate(10deg);
+  }
+}
+
+.glass {
+  border: 1px solid rgba(148, 217, 255, 0.16);
+  background: linear-gradient(145deg, rgba(10, 16, 32, 0.78), rgba(9, 12, 25, 0.58));
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(18px);
+}
+
+.neon-border {
+  position: relative;
+}
+
+.neon-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(24, 215, 255, 0.7), rgba(141, 92, 255, 0.25), rgba(98, 255, 178, 0.45));
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.section-pad {
+  padding-block: 5rem;
+}
+
+@media (max-width: 768px) {
+  .section-pad {
+    padding-block: 3.5rem;
+  }
+}
