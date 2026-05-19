@@ -130,3 +130,10 @@ npm install
 npm run build
 pm2 restart amanpal-portfolio
 ```
+
+Or run the included helper:
+
+```bash
+cd /var/www/amanpal-portfolio
+bash scripts/deploy-vps.sh
+```
