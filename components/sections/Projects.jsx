@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { createPortal } from "react-dom";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, ExternalLink, Github, MonitorUp, Radio, X } from "lucide-react";
 import MotionCard from "@/components/ui/MotionCard";
@@ -25,10 +25,10 @@ const projects = [
     tech: ["HTML", "CSS", "Tailwind CSS", "React.js", "DaisyUI", "Socket.IO", "Cloudinary"],
     accent: "cyan",
     screenshots: [
-      { src: "/projects/chatter/dashboard.png", label: "Dashboard" },
-      { src: "/projects/chatter/login.png", label: "Login" },
+      { src: "/projects/chatter/dashboard.png", label: "Chat workspace" },
       { src: "/projects/chatter/themes.png", label: "Theme picker" },
       { src: "/projects/chatter/profile.png", label: "Profile" },
+      { src: "/projects/chatter/login.png", label: "Login" },
       { src: "/projects/chatter/signup.png", label: "Signup" }
     ]
   },
@@ -100,6 +100,7 @@ function ProjectMockup({ accent }) {
 
 function ProjectScreenshots({ screenshots, title }) {
   const [activeIndex, setActiveIndex] = useState(null);
+  const touchStartX = useRef(null);
   const activeScreenshot = activeIndex === null ? null : screenshots[activeIndex];
 
   const showPrevious = useCallback(() => {
@@ -109,6 +110,29 @@ function ProjectScreenshots({ screenshots, title }) {
   const showNext = useCallback(() => {
     setActiveIndex((current) => (current === screenshots.length - 1 ? 0 : current + 1));
   }, [screenshots.length]);
+
+  const handleTouchStart = useCallback((event) => {
+    touchStartX.current = event.changedTouches[0].clientX;
+  }, []);
+
+  const handleTouchEnd = useCallback((event) => {
+    if (touchStartX.current === null) {
+      return;
+    }
+
+    const deltaX = event.changedTouches[0].clientX - touchStartX.current;
+    touchStartX.current = null;
+
+    if (Math.abs(deltaX) < 48) {
+      return;
+    }
+
+    if (deltaX > 0) {
+      showPrevious();
+    } else {
+      showNext();
+    }
+  }, [showNext, showPrevious]);
 
   useEffect(() => {
     if (activeIndex === null) {
@@ -240,30 +264,34 @@ function ProjectScreenshots({ screenshots, title }) {
               </div>
             </div>
 
-            <div className="relative min-h-0 flex-1 overflow-hidden rounded-lg border border-cyanGlow/25 bg-[radial-gradient(circle_at_center,rgba(24,215,255,0.08),rgba(5,7,18,0.92)_60%)] shadow-glow">
+            <div
+              className="relative min-h-0 flex-1 overflow-hidden rounded-lg border border-cyanGlow/25 bg-[radial-gradient(circle_at_center,rgba(24,215,255,0.08),rgba(5,7,18,0.92)_60%)] shadow-glow"
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+            >
               <Image
                 src={activeScreenshot.src}
                 alt={`${title} ${activeScreenshot.label} full-size screen`}
                 fill
                 sizes="100vw"
-                className="object-contain"
+                className="object-contain brightness-110 contrast-105"
                 priority
               />
               <button
                 type="button"
                 onClick={showPrevious}
                 aria-label="Previous screenshot"
-                className="absolute left-3 top-1/2 inline-flex -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/45 p-3 text-white shadow-glow backdrop-blur transition hover:border-cyanGlow hover:bg-cyanGlow/15 md:left-5"
+                className="absolute left-3 top-1/2 inline-flex -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/40 p-2.5 text-white shadow-glow backdrop-blur transition hover:border-cyanGlow hover:bg-cyanGlow/15 md:left-5"
               >
-                <ChevronLeft size={24} />
+                <ChevronLeft size={20} />
               </button>
               <button
                 type="button"
                 onClick={showNext}
                 aria-label="Next screenshot"
-                className="absolute right-3 top-1/2 inline-flex -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/45 p-3 text-white shadow-glow backdrop-blur transition hover:border-cyanGlow hover:bg-cyanGlow/15 md:right-5"
+                className="absolute right-3 top-1/2 inline-flex -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/40 p-2.5 text-white shadow-glow backdrop-blur transition hover:border-cyanGlow hover:bg-cyanGlow/15 md:right-5"
               >
-                <ChevronRight size={24} />
+                <ChevronRight size={20} />
               </button>
             </div>
 
@@ -293,6 +321,9 @@ function ProjectScreenshots({ screenshots, title }) {
                 </button>
               ))}
               </div>
+              <p className="mt-3 text-center text-xs text-slate-400">
+                Use left/right arrows or swipe to browse. Press Esc to close.
+              </p>
             </div>
           </motion.div>
         </motion.div>
