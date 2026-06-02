@@ -3,7 +3,8 @@
 import Image from "next/image";
 import { createPortal } from "react-dom";
 import { useCallback, useEffect, useState } from "react";
-import { ChevronLeft, ChevronRight, Github, MonitorUp, Radio, X } from "lucide-react";
+import { motion } from "framer-motion";
+import { ChevronLeft, ChevronRight, ExternalLink, Github, MonitorUp, Radio, X } from "lucide-react";
 import MotionCard from "@/components/ui/MotionCard";
 import SectionHeader from "@/components/ui/SectionHeader";
 
@@ -187,31 +188,59 @@ function ProjectScreenshots({ screenshots, title }) {
       </div>
 
       {activeScreenshot ? createPortal(
-        <div
+        <motion.div
           role="dialog"
           aria-modal="true"
           aria-label={`${title} ${activeScreenshot.label} screenshot preview`}
           className="fixed inset-0 z-[999] flex items-center justify-center bg-black/90 p-3 backdrop-blur-md md:p-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.2 }}
           onClick={() => setActiveIndex(null)}
         >
-          <div className="flex h-full w-full max-w-[96vw] flex-col" onClick={(event) => event.stopPropagation()}>
-            <div className="mb-3 flex items-center justify-between gap-3">
-              <div>
-                <p className="text-sm font-semibold text-white">{title}</p>
-                <p className="text-xs uppercase tracking-[0.18em] text-cyanGlow">
+          <motion.div
+            className="flex h-full w-full max-w-[98vw] flex-col gap-3"
+            initial={{ opacity: 0, scale: 0.97, y: 14 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.24, ease: "easeOut" }}
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="glass flex items-center justify-between gap-3 rounded-lg px-4 py-3">
+              <div className="min-w-0">
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                  <p className="truncate text-sm font-semibold text-white md:text-base">{title}</p>
+                  <span className="rounded-md border border-cyanGlow/25 bg-cyanGlow/10 px-2.5 py-1 text-xs font-semibold text-cyanGlow">
+                    {activeIndex + 1} / {screenshots.length}
+                  </span>
+                </div>
+                <p className="mt-1 text-xs uppercase tracking-[0.18em] text-cyanGlow">
                   {activeScreenshot.label}
                 </p>
+                <p className="mt-1 hidden text-sm text-slate-300 md:block">
+                  Authentication, profile management, themes, and chat workspace views.
+                </p>
               </div>
-              <button
-                type="button"
-                onClick={() => setActiveIndex(null)}
-                aria-label="Close screenshot preview"
-                className="rounded-md border border-white/15 bg-white/10 p-2 text-white transition hover:border-cyanGlow"
-              >
-                <X size={20} />
-              </button>
+              <div className="flex shrink-0 items-center gap-2">
+                <a
+                  href={activeScreenshot.src}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hidden items-center gap-2 rounded-md border border-white/15 bg-white/10 px-3 py-2 text-sm text-white transition hover:border-cyanGlow md:inline-flex"
+                >
+                  Open image <ExternalLink size={16} />
+                </a>
+                <button
+                  type="button"
+                  onClick={() => setActiveIndex(null)}
+                  aria-label="Close screenshot preview"
+                  className="rounded-md border border-white/15 bg-white/10 p-2 text-white transition hover:border-cyanGlow"
+                >
+                  <X size={20} />
+                </button>
+              </div>
             </div>
-            <div className="relative min-h-0 flex-1 overflow-hidden rounded-lg border border-cyanGlow/25 bg-ink shadow-glow">
+
+            <div className="relative min-h-0 flex-1 overflow-hidden rounded-lg border border-cyanGlow/25 bg-[radial-gradient(circle_at_center,rgba(24,215,255,0.08),rgba(5,7,18,0.92)_60%)] shadow-glow">
               <Image
                 src={activeScreenshot.src}
                 alt={`${title} ${activeScreenshot.label} full-size screen`}
@@ -220,48 +249,53 @@ function ProjectScreenshots({ screenshots, title }) {
                 className="object-contain"
                 priority
               />
-            </div>
-            <div className="mt-4 flex items-center justify-between gap-3">
               <button
                 type="button"
                 onClick={showPrevious}
-                className="inline-flex items-center gap-2 rounded-md border border-white/15 bg-white/10 px-4 py-2 text-sm text-white transition hover:border-cyanGlow"
+                aria-label="Previous screenshot"
+                className="absolute left-3 top-1/2 inline-flex -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/45 p-3 text-white shadow-glow backdrop-blur transition hover:border-cyanGlow hover:bg-cyanGlow/15 md:left-5"
               >
-                <ChevronLeft size={18} /> Previous
+                <ChevronLeft size={24} />
               </button>
-              <p className="text-sm text-slate-300">
-                {activeIndex + 1} / {screenshots.length}
-              </p>
               <button
                 type="button"
                 onClick={showNext}
-                className="inline-flex items-center gap-2 rounded-md border border-white/15 bg-white/10 px-4 py-2 text-sm text-white transition hover:border-cyanGlow"
+                aria-label="Next screenshot"
+                className="absolute right-3 top-1/2 inline-flex -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/45 p-3 text-white shadow-glow backdrop-blur transition hover:border-cyanGlow hover:bg-cyanGlow/15 md:right-5"
               >
-                Next <ChevronRight size={18} />
+                <ChevronRight size={24} />
               </button>
             </div>
-            <div className="mt-3 grid grid-cols-5 gap-2">
+
+            <div className="glass rounded-lg p-3">
+              <div className="grid grid-cols-5 gap-2">
               {screenshots.map((screenshot, index) => (
                 <button
                   type="button"
                   key={screenshot.src}
                   onClick={() => setActiveIndex(index)}
                   aria-label={`View ${screenshot.label} screenshot`}
-                  className={`relative h-14 overflow-hidden rounded-md border transition ${activeIndex === index ? "border-cyanGlow" : "border-white/10 opacity-70 hover:opacity-100"}`}
+                  className={`group rounded-md border p-1.5 text-left transition ${activeIndex === index ? "scale-[1.02] border-cyanGlow bg-cyanGlow/10 shadow-glow" : "border-white/10 bg-white/5 opacity-75 hover:opacity-100"}`}
                 >
-                  <Image
-                    src={screenshot.src}
-                    alt={`${title} ${screenshot.label} thumbnail`}
-                    fill
-                    sizes="120px"
-                    className="object-cover object-left-top"
-                    loading="lazy"
-                  />
+                  <span className="relative block h-12 overflow-hidden rounded border border-white/10 md:h-16">
+                    <Image
+                      src={screenshot.src}
+                      alt={`${title} ${screenshot.label} thumbnail`}
+                      fill
+                      sizes="160px"
+                      className="object-cover object-left-top transition group-hover:scale-105"
+                      loading="lazy"
+                    />
+                  </span>
+                  <span className="mt-1 hidden truncate text-center text-xs font-medium text-slate-200 md:block">
+                    {screenshot.label}
+                  </span>
                 </button>
               ))}
+              </div>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
         , document.body
       ) : null}
     </>
