@@ -19,7 +19,7 @@ export default function Footer() {
             <Mail size={18} />
           </a>
         </div>
-        <p className="text-sm text-slate-500">© 2026 Amanpal Singh. All rights reserved.</p>
+        <p className="text-sm text-slate-500">&copy; 2026 Amanpal Singh. All rights reserved.</p>
       </div>
     </footer>
   );
