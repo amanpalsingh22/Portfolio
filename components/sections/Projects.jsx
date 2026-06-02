@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Github, MonitorUp, Radio } from "lucide-react";
 import MotionCard from "@/components/ui/MotionCard";
 import SectionHeader from "@/components/ui/SectionHeader";
@@ -19,7 +20,14 @@ const projects = [
       "Tailwind and DaisyUI design system"
     ],
     tech: ["HTML", "CSS", "Tailwind CSS", "React.js", "DaisyUI", "Socket.IO", "Cloudinary"],
-    accent: "cyan"
+    accent: "cyan",
+    screenshots: [
+      { src: "/projects/chatter/dashboard.png", label: "Dashboard" },
+      { src: "/projects/chatter/login.png", label: "Login" },
+      { src: "/projects/chatter/themes.png", label: "Theme picker" },
+      { src: "/projects/chatter/profile.png", label: "Profile" },
+      { src: "/projects/chatter/signup.png", label: "Signup" }
+    ]
   },
   {
     title: "AI Quiz Generator",
@@ -87,6 +95,42 @@ function ProjectMockup({ accent }) {
   );
 }
 
+function ProjectScreenshots({ screenshots, title }) {
+  return (
+    <div className="rounded-lg border border-white/10 bg-ink/80 p-3">
+      <div className="relative aspect-[16/10] overflow-hidden rounded-md border border-white/10 bg-black/40">
+        <Image
+          src={screenshots[0].src}
+          alt={`${title} ${screenshots[0].label} screen`}
+          fill
+          sizes="(min-width: 1024px) 30vw, 100vw"
+          className="object-cover object-left-top"
+          loading="lazy"
+        />
+        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 to-transparent p-3">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-100">
+            {screenshots[0].label}
+          </p>
+        </div>
+      </div>
+      <div className="mt-3 grid grid-cols-4 gap-2">
+        {screenshots.slice(1).map((screenshot) => (
+          <div key={screenshot.src} className="group relative h-16 overflow-hidden rounded-md border border-white/10 bg-white/5">
+            <Image
+              src={screenshot.src}
+              alt={`${title} ${screenshot.label} screen`}
+              fill
+              sizes="120px"
+              className="object-cover object-left-top opacity-80 transition group-hover:scale-105 group-hover:opacity-100"
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function Projects() {
   return (
     <section id="projects" className="section-pad px-4">
@@ -99,7 +143,11 @@ export default function Projects() {
         <div className="grid gap-6 lg:grid-cols-3">
           {projects.map((project, index) => (
             <MotionCard key={project.title} delay={index * 0.05} className="flex flex-col p-5">
-              <ProjectMockup accent={project.accent} />
+              {project.screenshots ? (
+                <ProjectScreenshots screenshots={project.screenshots} title={project.title} />
+              ) : (
+                <ProjectMockup accent={project.accent} />
+              )}
               <div className="mt-5 flex-1">
                 <p className="text-sm font-medium text-cyanGlow">{project.duration}</p>
                 <h3 className="mt-2 text-2xl font-semibold text-white">{project.title}</h3>
