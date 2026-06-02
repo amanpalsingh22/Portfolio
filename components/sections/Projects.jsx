@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { createPortal } from "react-dom";
 import { useCallback, useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight, Github, MonitorUp, Radio, X } from "lucide-react";
 import MotionCard from "@/components/ui/MotionCard";
@@ -185,15 +186,15 @@ function ProjectScreenshots({ screenshots, title }) {
         </div>
       </div>
 
-      {activeScreenshot ? (
+      {activeScreenshot ? createPortal(
         <div
           role="dialog"
           aria-modal="true"
           aria-label={`${title} ${activeScreenshot.label} screenshot preview`}
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 p-4 backdrop-blur-md"
+          className="fixed inset-0 z-[999] flex items-center justify-center bg-black/90 p-3 backdrop-blur-md md:p-6"
           onClick={() => setActiveIndex(null)}
         >
-          <div className="w-full max-w-6xl" onClick={(event) => event.stopPropagation()}>
+          <div className="flex h-full w-full max-w-[96vw] flex-col" onClick={(event) => event.stopPropagation()}>
             <div className="mb-3 flex items-center justify-between gap-3">
               <div>
                 <p className="text-sm font-semibold text-white">{title}</p>
@@ -210,7 +211,7 @@ function ProjectScreenshots({ screenshots, title }) {
                 <X size={20} />
               </button>
             </div>
-            <div className="relative aspect-[16/9] max-h-[78vh] overflow-hidden rounded-lg border border-cyanGlow/25 bg-ink shadow-glow">
+            <div className="relative min-h-0 flex-1 overflow-hidden rounded-lg border border-cyanGlow/25 bg-ink shadow-glow">
               <Image
                 src={activeScreenshot.src}
                 alt={`${title} ${activeScreenshot.label} full-size screen`}
@@ -261,6 +262,7 @@ function ProjectScreenshots({ screenshots, title }) {
             </div>
           </div>
         </div>
+        , document.body
       ) : null}
     </>
   );
