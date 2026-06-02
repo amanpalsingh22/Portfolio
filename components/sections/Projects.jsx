@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { Github, MonitorUp, Radio } from "lucide-react";
+import { useCallback, useEffect, useState } from "react";
+import { ChevronLeft, ChevronRight, Github, MonitorUp, Radio, X } from "lucide-react";
 import MotionCard from "@/components/ui/MotionCard";
 import SectionHeader from "@/components/ui/SectionHeader";
 
@@ -96,38 +97,172 @@ function ProjectMockup({ accent }) {
 }
 
 function ProjectScreenshots({ screenshots, title }) {
+  const [activeIndex, setActiveIndex] = useState(null);
+  const activeScreenshot = activeIndex === null ? null : screenshots[activeIndex];
+
+  const showPrevious = useCallback(() => {
+    setActiveIndex((current) => (current === 0 ? screenshots.length - 1 : current - 1));
+  }, [screenshots.length]);
+
+  const showNext = useCallback(() => {
+    setActiveIndex((current) => (current === screenshots.length - 1 ? 0 : current + 1));
+  }, [screenshots.length]);
+
+  useEffect(() => {
+    if (activeIndex === null) {
+      return undefined;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    function handleKeyDown(event) {
+      if (event.key === "Escape") {
+        setActiveIndex(null);
+      }
+      if (event.key === "ArrowLeft") {
+        showPrevious();
+      }
+      if (event.key === "ArrowRight") {
+        showNext();
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [activeIndex, showNext, showPrevious]);
+
   return (
-    <div className="rounded-lg border border-white/10 bg-ink/80 p-3">
-      <div className="relative aspect-[16/10] overflow-hidden rounded-md border border-white/10 bg-black/40">
-        <Image
-          src={screenshots[0].src}
-          alt={`${title} ${screenshots[0].label} screen`}
-          fill
-          sizes="(min-width: 1024px) 30vw, 100vw"
-          className="object-cover object-left-top"
-          loading="lazy"
-        />
-        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 to-transparent p-3">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-100">
-            {screenshots[0].label}
-          </p>
+    <>
+      <div className="rounded-lg border border-white/10 bg-ink/80 p-3">
+        <button
+          type="button"
+          onClick={() => setActiveIndex(0)}
+          aria-label={`Open ${title} ${screenshots[0].label} screenshot`}
+          className="relative aspect-[16/10] w-full cursor-zoom-in overflow-hidden rounded-md border border-white/10 bg-black/40 text-left"
+        >
+          <Image
+            src={screenshots[0].src}
+            alt={`${title} ${screenshots[0].label} screen`}
+            fill
+            sizes="(min-width: 1024px) 30vw, 100vw"
+            className="object-cover object-left-top transition duration-300 hover:scale-[1.02]"
+            loading="lazy"
+          />
+          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 to-transparent p-3">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-100">
+              {screenshots[0].label}
+            </p>
+          </div>
+        </button>
+        <div className="mt-3 grid grid-cols-4 gap-2">
+          {screenshots.slice(1).map((screenshot, index) => {
+            const screenshotIndex = index + 1;
+
+            return (
+              <button
+                type="button"
+                key={screenshot.src}
+                onClick={() => setActiveIndex(screenshotIndex)}
+                aria-label={`Open ${title} ${screenshot.label} screenshot`}
+                className="group relative h-16 cursor-zoom-in overflow-hidden rounded-md border border-white/10 bg-white/5"
+              >
+                <Image
+                  src={screenshot.src}
+                  alt={`${title} ${screenshot.label} screen`}
+                  fill
+                  sizes="120px"
+                  className="object-cover object-left-top opacity-80 transition group-hover:scale-105 group-hover:opacity-100"
+                  loading="lazy"
+                />
+              </button>
+            );
+          })}
         </div>
       </div>
-      <div className="mt-3 grid grid-cols-4 gap-2">
-        {screenshots.slice(1).map((screenshot) => (
-          <div key={screenshot.src} className="group relative h-16 overflow-hidden rounded-md border border-white/10 bg-white/5">
-            <Image
-              src={screenshot.src}
-              alt={`${title} ${screenshot.label} screen`}
-              fill
-              sizes="120px"
-              className="object-cover object-left-top opacity-80 transition group-hover:scale-105 group-hover:opacity-100"
-              loading="lazy"
-            />
+
+      {activeScreenshot ? (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${title} ${activeScreenshot.label} screenshot preview`}
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 p-4 backdrop-blur-md"
+          onClick={() => setActiveIndex(null)}
+        >
+          <div className="w-full max-w-6xl" onClick={(event) => event.stopPropagation()}>
+            <div className="mb-3 flex items-center justify-between gap-3">
+              <div>
+                <p className="text-sm font-semibold text-white">{title}</p>
+                <p className="text-xs uppercase tracking-[0.18em] text-cyanGlow">
+                  {activeScreenshot.label}
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setActiveIndex(null)}
+                aria-label="Close screenshot preview"
+                className="rounded-md border border-white/15 bg-white/10 p-2 text-white transition hover:border-cyanGlow"
+              >
+                <X size={20} />
+              </button>
+            </div>
+            <div className="relative aspect-[16/9] max-h-[78vh] overflow-hidden rounded-lg border border-cyanGlow/25 bg-ink shadow-glow">
+              <Image
+                src={activeScreenshot.src}
+                alt={`${title} ${activeScreenshot.label} full-size screen`}
+                fill
+                sizes="100vw"
+                className="object-contain"
+                priority
+              />
+            </div>
+            <div className="mt-4 flex items-center justify-between gap-3">
+              <button
+                type="button"
+                onClick={showPrevious}
+                className="inline-flex items-center gap-2 rounded-md border border-white/15 bg-white/10 px-4 py-2 text-sm text-white transition hover:border-cyanGlow"
+              >
+                <ChevronLeft size={18} /> Previous
+              </button>
+              <p className="text-sm text-slate-300">
+                {activeIndex + 1} / {screenshots.length}
+              </p>
+              <button
+                type="button"
+                onClick={showNext}
+                className="inline-flex items-center gap-2 rounded-md border border-white/15 bg-white/10 px-4 py-2 text-sm text-white transition hover:border-cyanGlow"
+              >
+                Next <ChevronRight size={18} />
+              </button>
+            </div>
+            <div className="mt-3 grid grid-cols-5 gap-2">
+              {screenshots.map((screenshot, index) => (
+                <button
+                  type="button"
+                  key={screenshot.src}
+                  onClick={() => setActiveIndex(index)}
+                  aria-label={`View ${screenshot.label} screenshot`}
+                  className={`relative h-14 overflow-hidden rounded-md border transition ${activeIndex === index ? "border-cyanGlow" : "border-white/10 opacity-70 hover:opacity-100"}`}
+                >
+                  <Image
+                    src={screenshot.src}
+                    alt={`${title} ${screenshot.label} thumbnail`}
+                    fill
+                    sizes="120px"
+                    className="object-cover object-left-top"
+                    loading="lazy"
+                  />
+                </button>
+              ))}
+            </div>
           </div>
-        ))}
-      </div>
-    </div>
+        </div>
+      ) : null}
+    </>
   );
 }
 
