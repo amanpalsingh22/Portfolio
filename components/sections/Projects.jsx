@@ -4,7 +4,7 @@ import Image from "next/image";
 import { createPortal } from "react-dom";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, ExternalLink, Github, MonitorUp, Radio, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, ExternalLink, Github, Maximize2, MonitorUp, Radio, X } from "lucide-react";
 import MotionCard from "@/components/ui/MotionCard";
 import SectionHeader from "@/components/ui/SectionHeader";
 
@@ -70,7 +70,7 @@ function ProjectMockup({ accent }) {
   const color = accent === "violet" ? "bg-violetGlow" : accent === "green" ? "bg-greenGlow" : "bg-cyanGlow";
 
   return (
-    <div className="rounded-lg border border-white/10 bg-ink/80 p-4">
+    <div className="flex h-[332px] flex-col rounded-lg border border-white/10 bg-ink/80 p-4">
       <div className="mb-4 flex items-center justify-between">
         <div className="flex gap-2">
           <span className="h-2.5 w-2.5 rounded-full bg-red-400" />
@@ -79,7 +79,7 @@ function ProjectMockup({ accent }) {
         </div>
         <span className="text-xs text-slate-500">preview</span>
       </div>
-      <div className="grid gap-3 md:grid-cols-[0.7fr_1fr]">
+      <div className="grid flex-1 gap-3 md:grid-cols-[0.7fr_1fr]">
         <div className="space-y-2">
           {[1, 2, 3, 4].map((item) => (
             <div key={item} className="h-8 rounded-md bg-white/10" />
@@ -164,21 +164,24 @@ function ProjectScreenshots({ screenshots, title }) {
 
   return (
     <>
-      <div className="rounded-lg border border-white/10 bg-ink/80 p-3">
+      <div className="h-[332px] rounded-lg border border-white/10 bg-ink/80 p-3">
         <button
           type="button"
           onClick={() => setActiveIndex(0)}
           aria-label={`Open ${title} ${screenshots[0].label} screenshot`}
-          className="relative aspect-[16/10] w-full cursor-zoom-in overflow-hidden rounded-md border border-white/10 bg-black/40 text-left"
+          className="group relative h-56 w-full cursor-zoom-in overflow-hidden rounded-md border border-white/10 bg-black/40 text-left"
         >
           <Image
             src={screenshots[0].src}
             alt={`${title} ${screenshots[0].label} screen`}
             fill
             sizes="(min-width: 1024px) 30vw, 100vw"
-            className="object-cover object-left-top transition duration-300 hover:scale-[1.02]"
+            className="object-contain object-center brightness-110 contrast-105 transition duration-300 group-hover:scale-[1.02]"
             loading="lazy"
           />
+          <span className="absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-md border border-white/15 bg-black/45 px-2.5 py-1.5 text-xs font-medium text-white opacity-0 backdrop-blur transition group-hover:opacity-100">
+            <Maximize2 size={13} /> Click to preview
+          </span>
           <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 to-transparent p-3">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-100">
               {screenshots[0].label}
@@ -202,7 +205,7 @@ function ProjectScreenshots({ screenshots, title }) {
                   alt={`${title} ${screenshot.label} screen`}
                   fill
                   sizes="120px"
-                  className="object-cover object-left-top opacity-80 transition group-hover:scale-105 group-hover:opacity-100"
+                  className="object-cover object-left-top brightness-110 contrast-105 opacity-80 transition group-hover:scale-105 group-hover:opacity-100"
                   loading="lazy"
                 />
               </button>
@@ -333,6 +336,33 @@ function ProjectScreenshots({ screenshots, title }) {
   );
 }
 
+function ProjectAction({ href, icon: Icon, label }) {
+  const className = "inline-flex min-h-10 items-center justify-center gap-1.5 rounded-md border px-3 py-2 text-xs font-semibold transition";
+
+  if (!href) {
+    return (
+      <span
+        aria-disabled="true"
+        title={`${label} coming soon`}
+        className={`${className} cursor-not-allowed border-white/10 bg-white/5 text-slate-500`}
+      >
+        <Icon size={14} /> {label}
+      </span>
+    );
+  }
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className={`${className} border-cyanGlow/25 bg-cyanGlow/10 text-cyan-50 hover:-translate-y-0.5 hover:border-cyanGlow hover:shadow-glow`}
+    >
+      <Icon size={14} /> {label}
+    </a>
+  );
+}
+
 export default function Projects() {
   return (
     <section id="projects" className="section-pad px-4">
@@ -342,9 +372,9 @@ export default function Projects() {
           title="Real-world builds across realtime, AI, and dashboards."
           description="Each project highlights practical product thinking: responsive UI, API workflows, integration details, and clean user experience."
         />
-        <div className="grid gap-6 lg:grid-cols-3">
+        <div className="grid items-stretch gap-6 lg:grid-cols-3">
           {projects.map((project, index) => (
-            <MotionCard key={project.title} delay={index * 0.05} className="flex flex-col p-5">
+            <MotionCard key={project.title} delay={index * 0.05} className="flex h-full flex-col p-5">
               {project.screenshots ? (
                 <ProjectScreenshots screenshots={project.screenshots} title={project.title} />
               ) : (
@@ -371,15 +401,9 @@ export default function Projects() {
                 </div>
               </div>
               <div className="mt-6 grid grid-cols-3 gap-2">
-                <a href="#" className="inline-flex items-center justify-center gap-1 rounded-md border border-white/10 px-3 py-2 text-xs text-white transition hover:border-cyanGlow">
-                  <MonitorUp size={14} /> Details
-                </a>
-                <a href="https://github.com/amanpalsingh22" target="_blank" className="inline-flex items-center justify-center gap-1 rounded-md border border-white/10 px-3 py-2 text-xs text-white transition hover:border-cyanGlow">
-                  <Github size={14} /> GitHub
-                </a>
-                <a href="#" className="inline-flex items-center justify-center gap-1 rounded-md border border-white/10 px-3 py-2 text-xs text-white transition hover:border-cyanGlow">
-                  <Radio size={14} /> Demo
-                </a>
+                <ProjectAction href={project.detailsUrl} icon={MonitorUp} label="Details" />
+                <ProjectAction href={project.githubUrl} icon={Github} label="GitHub" />
+                <ProjectAction href={project.demoUrl} icon={Radio} label="Demo" />
               </div>
             </MotionCard>
           ))}
