@@ -179,13 +179,19 @@ function ProjectScreenshots({ screenshots, title }) {
             className="object-contain object-center brightness-110 contrast-105 transition duration-300 group-hover:scale-[1.02]"
             loading="lazy"
           />
-          <span className="absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-md border border-white/15 bg-black/45 px-2.5 py-1.5 text-xs font-medium text-white opacity-0 backdrop-blur transition group-hover:opacity-100">
-            <Maximize2 size={13} /> Click to preview
+          <span className="absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-cyanGlow/40 bg-black/55 text-cyan-50 shadow-glow backdrop-blur transition group-hover:scale-105 group-hover:bg-cyanGlow/20">
+            <Maximize2 size={16} />
           </span>
-          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 to-transparent p-3">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-100">
-              {screenshots[0].label}
-            </p>
+          <div className="absolute inset-0 border-2 border-transparent transition group-hover:border-cyanGlow/60 group-focus-visible:border-cyanGlow" />
+          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black via-black/72 to-transparent p-3">
+            <div className="flex items-end justify-between gap-3">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-100">
+                {screenshots[0].label}
+              </p>
+              <span className="inline-flex items-center gap-1.5 rounded-md border border-cyanGlow/35 bg-cyanGlow/15 px-2.5 py-1.5 text-xs font-semibold text-cyan-50 shadow-glow">
+                View gallery <ChevronRight size={13} />
+              </span>
+            </div>
           </div>
         </button>
         <div className="mt-3 grid grid-cols-4 gap-2">
