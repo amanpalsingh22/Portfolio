@@ -4,11 +4,38 @@ import Image from "next/image";
 import { createPortal } from "react-dom";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, ExternalLink, Github, Maximize2, MonitorUp, Radio, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, ExternalLink, Github, Images, Maximize2, MonitorUp, Radio, X } from "lucide-react";
 import MotionCard from "@/components/ui/MotionCard";
 import SectionHeader from "@/components/ui/SectionHeader";
 
 const projects = [
+  {
+    title: "Germany Quiz Image Trivia",
+    duration: "May - June 2026",
+    description:
+      "Built and published a native Android quiz app for learning German history, flags, football players, personalities, places, and culture through interactive image-based quizzes.",
+    features: [
+      "Published Android app on Google Play",
+      "Daily quiz and category-based learning",
+      "Image guessing and 4/6 option quiz modes",
+      "Flashcards, timer quiz, and true/false quiz",
+      "History timeline learning with explanations",
+      "Firebase services, streaks, levels, and notifications"
+    ],
+    tech: ["Kotlin", "Jetpack Compose", "Android SDK", "Retrofit", "Firebase", "REST APIs"],
+    accent: "green",
+    githubUrl: "https://github.com/amanpalsingh22/Germany-Quiz",
+    demoUrl: "https://play.google.com/store/apps/details?id=com.studex.germanyhistoryquiz&pcampaignid=web_share",
+    demoLabel: "Play Store",
+    gallerySummary: "Published Android app screens covering daily quizzes, category browsing, history learning, profile stats, and quiz explanations.",
+    screenshots: [
+      { src: "/projects/germany-quiz/store-promo.png", label: "Store promo" },
+      { src: "/projects/germany-quiz/home-categories.png", label: "Home categories" },
+      { src: "/projects/germany-quiz/history-events.png", label: "History events" },
+      { src: "/projects/germany-quiz/profile-stats.png", label: "Profile stats" },
+      { src: "/projects/germany-quiz/quiz-explanation.png", label: "Quiz explanation" }
+    ]
+  },
   {
     title: "Real-time Chat Application",
     duration: "June - July 2025",
@@ -24,6 +51,7 @@ const projects = [
     ],
     tech: ["HTML", "CSS", "Tailwind CSS", "React.js", "DaisyUI", "Socket.IO", "Cloudinary"],
     accent: "cyan",
+    gallerySummary: "Authentication, profile management, themes, and chat workspace views.",
     screenshots: [
       { src: "/projects/chatter/dashboard.png", label: "Chat workspace" },
       { src: "/projects/chatter/themes.png", label: "Theme picker" },
@@ -98,7 +126,7 @@ function ProjectMockup({ accent }) {
   );
 }
 
-function ProjectScreenshots({ screenshots, title }) {
+function ProjectScreenshots({ screenshots, title, summary }) {
   const [activeIndex, setActiveIndex] = useState(null);
   const touchStartX = useRef(null);
   const activeScreenshot = activeIndex === null ? null : screenshots[activeIndex];
@@ -188,13 +216,13 @@ function ProjectScreenshots({ screenshots, title }) {
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-100">
                 {screenshots[0].label}
               </p>
-              <span className="inline-flex items-center gap-1.5 rounded-md border border-cyanGlow/35 bg-cyanGlow/15 px-2.5 py-1.5 text-xs font-semibold text-cyan-50 shadow-glow">
-                View gallery <ChevronRight size={13} />
+              <span className="inline-flex items-center gap-1.5 rounded-md border border-cyanGlow/35 bg-cyanGlow/15 px-2.5 py-1.5 text-xs font-semibold text-cyan-50 shadow-glow transition group-hover:border-cyanGlow group-hover:bg-cyanGlow/25">
+                <Images size={13} /> {screenshots.length} screens
               </span>
             </div>
           </div>
         </button>
-        <div className="mt-3 grid grid-cols-4 gap-2">
+        <div className="mt-3 flex justify-center gap-2">
           {screenshots.slice(1).map((screenshot, index) => {
             const screenshotIndex = index + 1;
 
@@ -204,14 +232,14 @@ function ProjectScreenshots({ screenshots, title }) {
                 key={screenshot.src}
                 onClick={() => setActiveIndex(screenshotIndex)}
                 aria-label={`Open ${title} ${screenshot.label} screenshot`}
-                className="group relative h-16 cursor-zoom-in overflow-hidden rounded-md border border-white/10 bg-white/5"
+                className="group relative h-16 w-16 shrink-0 cursor-zoom-in overflow-hidden rounded-md border border-white/10 bg-white/5"
               >
                 <Image
                   src={screenshot.src}
                   alt={`${title} ${screenshot.label} screen`}
                   fill
                   sizes="120px"
-                  className="object-cover object-left-top brightness-110 contrast-105 opacity-80 transition group-hover:scale-105 group-hover:opacity-100"
+                  className="object-cover object-center brightness-110 contrast-105 opacity-80 transition group-hover:scale-105 group-hover:opacity-100"
                   loading="lazy"
                 />
               </button>
@@ -225,20 +253,20 @@ function ProjectScreenshots({ screenshots, title }) {
           role="dialog"
           aria-modal="true"
           aria-label={`${title} ${activeScreenshot.label} screenshot preview`}
-          className="fixed inset-0 z-[999] flex items-center justify-center bg-black/90 p-3 backdrop-blur-md md:p-6"
+          className="fixed inset-0 z-[999] flex items-center justify-center bg-black/45 p-4 backdrop-blur-xl md:p-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.2 }}
           onClick={() => setActiveIndex(null)}
         >
           <motion.div
-            className="flex h-full w-full max-w-[98vw] flex-col gap-3"
+            className="glass flex max-h-[92vh] w-full max-w-5xl flex-col overflow-hidden rounded-2xl border-cyanGlow/20 shadow-[0_30px_120px_rgba(0,0,0,0.65)]"
             initial={{ opacity: 0, scale: 0.97, y: 14 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.24, ease: "easeOut" }}
             onClick={(event) => event.stopPropagation()}
           >
-            <div className="glass flex items-center justify-between gap-3 rounded-lg px-4 py-3">
+            <div className="flex items-start justify-between gap-3 border-b border-white/10 px-4 py-4 md:px-5">
               <div className="min-w-0">
                 <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
                   <p className="truncate text-sm font-semibold text-white md:text-base">{title}</p>
@@ -250,7 +278,7 @@ function ProjectScreenshots({ screenshots, title }) {
                   {activeScreenshot.label}
                 </p>
                 <p className="mt-1 hidden text-sm text-slate-300 md:block">
-                  Authentication, profile management, themes, and chat workspace views.
+                  {summary}
                 </p>
               </div>
               <div className="flex shrink-0 items-center gap-2">
@@ -274,7 +302,7 @@ function ProjectScreenshots({ screenshots, title }) {
             </div>
 
             <div
-              className="relative min-h-0 flex-1 overflow-hidden rounded-lg border border-cyanGlow/25 bg-[radial-gradient(circle_at_center,rgba(24,215,255,0.08),rgba(5,7,18,0.92)_60%)] shadow-glow"
+              className="relative h-[50vh] min-h-[280px] overflow-hidden bg-[radial-gradient(circle_at_center,rgba(24,215,255,0.08),rgba(5,7,18,0.86)_62%)] md:h-[58vh]"
               onTouchStart={handleTouchStart}
               onTouchEnd={handleTouchEnd}
             >
@@ -304,28 +332,26 @@ function ProjectScreenshots({ screenshots, title }) {
               </button>
             </div>
 
-            <div className="glass rounded-lg p-3">
-              <div className="grid grid-cols-5 gap-2">
+            <div className="border-t border-white/10 bg-white/[0.03] p-3 md:p-4">
+              <div className="flex justify-center gap-2 overflow-x-auto pb-1">
               {screenshots.map((screenshot, index) => (
                 <button
                   type="button"
                   key={screenshot.src}
                   onClick={() => setActiveIndex(index)}
                   aria-label={`View ${screenshot.label} screenshot`}
-                  className={`group rounded-md border p-1.5 text-left transition ${activeIndex === index ? "scale-[1.02] border-cyanGlow bg-cyanGlow/10 shadow-glow" : "border-white/10 bg-white/5 opacity-75 hover:opacity-100"}`}
+                  title={screenshot.label}
+                  className={`group h-16 w-16 shrink-0 rounded-lg border p-1.5 text-left transition md:h-20 md:w-20 ${activeIndex === index ? "scale-[1.03] border-cyanGlow bg-cyanGlow/10 shadow-glow" : "border-white/10 bg-white/5 opacity-70 hover:opacity-100"}`}
                 >
-                  <span className="relative block h-12 overflow-hidden rounded border border-white/10 md:h-16">
+                  <span className="relative block h-full w-full overflow-hidden rounded-md border border-white/10">
                     <Image
                       src={screenshot.src}
                       alt={`${title} ${screenshot.label} thumbnail`}
                       fill
                       sizes="160px"
-                      className="object-cover object-left-top transition group-hover:scale-105"
+                      className="object-cover object-center transition group-hover:scale-105"
                       loading="lazy"
                     />
-                  </span>
-                  <span className="mt-1 hidden truncate text-center text-xs font-medium text-slate-200 md:block">
-                    {screenshot.label}
                   </span>
                 </button>
               ))}
@@ -378,11 +404,11 @@ export default function Projects() {
           title="Real-world builds across realtime, AI, and dashboards."
           description="Each project highlights practical product thinking: responsive UI, API workflows, integration details, and clean user experience."
         />
-        <div className="grid items-stretch gap-6 lg:grid-cols-3">
+        <div className="grid items-stretch gap-6 lg:grid-cols-2 xl:grid-cols-3">
           {projects.map((project, index) => (
             <MotionCard key={project.title} delay={index * 0.05} className="flex h-full flex-col p-5">
               {project.screenshots ? (
-                <ProjectScreenshots screenshots={project.screenshots} title={project.title} />
+                <ProjectScreenshots screenshots={project.screenshots} title={project.title} summary={project.gallerySummary} />
               ) : (
                 <ProjectMockup accent={project.accent} />
               )}
@@ -409,7 +435,7 @@ export default function Projects() {
               <div className="mt-6 grid grid-cols-3 gap-2">
                 <ProjectAction href={project.detailsUrl} icon={MonitorUp} label="Details" />
                 <ProjectAction href={project.githubUrl} icon={Github} label="GitHub" />
-                <ProjectAction href={project.demoUrl} icon={Radio} label="Demo" />
+                <ProjectAction href={project.demoUrl} icon={Radio} label={project.demoLabel || "Demo"} />
               </div>
             </MotionCard>
           ))}
