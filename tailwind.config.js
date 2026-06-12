@@ -7,16 +7,16 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        ink: "#050712",
-        panel: "#0a1020",
-        cyanGlow: "#18d7ff",
-        blueGlow: "#4f8cff",
-        violetGlow: "#8d5cff",
-        greenGlow: "#62ffb2"
+        ink: "#070a10",
+        panel: "#10141f",
+        cyanGlow: "#7dd3fc",
+        blueGlow: "#93c5fd",
+        violetGlow: "#c4b5fd",
+        greenGlow: "#86efac"
       },
       boxShadow: {
-        glow: "0 0 32px rgba(24, 215, 255, 0.18)",
-        violet: "0 0 32px rgba(141, 92, 255, 0.18)"
+        glow: "0 18px 50px rgba(0, 0, 0, 0.28)",
+        violet: "0 18px 50px rgba(0, 0, 0, 0.24)"
       },
       backgroundImage: {
         "grid-pattern":

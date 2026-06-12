@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, MapPin, Phone, Send } from "lucide-react";
 import { useState } from "react";
 import MotionCard from "@/components/ui/MotionCard";
@@ -12,6 +13,25 @@ const links = [
   ["GitHub", "amanpalsingh22", "https://github.com/amanpalsingh22", Github],
   ["Location", "Punjab, India", "#contact", MapPin]
 ];
+
+const formVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.12
+    }
+  }
+};
+
+const fieldVariants = {
+  hidden: { opacity: 0, y: 18 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
+  }
+};
 
 export default function Contact() {
   const [form, setForm] = useState({
@@ -80,34 +100,41 @@ export default function Contact() {
             ))}
           </div>
           <MotionCard className="p-6 md:p-8">
-            <form className="grid gap-4" onSubmit={handleSubmit}>
-              <div className="grid gap-4 md:grid-cols-2">
-                <label className="grid gap-2 text-sm text-slate-300">
+            <motion.form
+              className="grid gap-4"
+              onSubmit={handleSubmit}
+              variants={formVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.35 }}
+            >
+              <motion.div className="grid gap-4 md:grid-cols-2" variants={formVariants}>
+                <motion.label className="grid gap-2 text-sm text-slate-300" variants={fieldVariants}>
                   Name
                   <input name="name" value={form.name} onChange={updateField} required className="rounded-md border border-white/10 bg-white/10 px-4 py-3 text-white outline-none transition focus:border-cyanGlow focus:shadow-glow" placeholder="Your name" />
-                </label>
-                <label className="grid gap-2 text-sm text-slate-300">
+                </motion.label>
+                <motion.label className="grid gap-2 text-sm text-slate-300" variants={fieldVariants}>
                   Email
                   <input name="email" type="email" value={form.email} onChange={updateField} required className="rounded-md border border-white/10 bg-white/10 px-4 py-3 text-white outline-none transition focus:border-cyanGlow focus:shadow-glow" placeholder="you@example.com" />
-                </label>
-              </div>
-              <label className="grid gap-2 text-sm text-slate-300">
+                </motion.label>
+              </motion.div>
+              <motion.label className="grid gap-2 text-sm text-slate-300" variants={fieldVariants}>
                 Subject
                 <input name="subject" value={form.subject} onChange={updateField} required className="rounded-md border border-white/10 bg-white/10 px-4 py-3 text-white outline-none transition focus:border-cyanGlow focus:shadow-glow" placeholder="Project, internship, or role" />
-              </label>
-              <label className="grid gap-2 text-sm text-slate-300">
+              </motion.label>
+              <motion.label className="grid gap-2 text-sm text-slate-300" variants={fieldVariants}>
                 Message
                 <textarea name="message" value={form.message} onChange={updateField} required rows={6} className="resize-none rounded-md border border-white/10 bg-white/10 px-4 py-3 text-white outline-none transition focus:border-cyanGlow focus:shadow-glow" placeholder="Tell me what you want to build." />
-              </label>
+              </motion.label>
               {status.message ? (
-                <p className={`rounded-md border px-4 py-3 text-sm ${status.type === "success" ? "border-greenGlow/30 bg-greenGlow/10 text-green-100" : "border-red-400/30 bg-red-400/10 text-red-100"}`}>
+                <motion.p variants={fieldVariants} className={`rounded-md border px-4 py-3 text-sm ${status.type === "success" ? "border-greenGlow/30 bg-greenGlow/10 text-green-100" : "border-red-400/30 bg-red-400/10 text-red-100"}`}>
                   {status.message}
-                </p>
+                </motion.p>
               ) : null}
-              <button type="submit" disabled={isSending} className="inline-flex w-fit items-center gap-2 rounded-md bg-cyanGlow px-5 py-3 font-semibold text-ink transition hover:-translate-y-1 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0">
+              <motion.button variants={fieldVariants} type="submit" disabled={isSending} className="inline-flex w-fit items-center gap-2 rounded-md bg-cyanGlow px-5 py-3 font-semibold text-ink transition hover:-translate-y-1 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0">
                 {isSending ? "Sending..." : "Send Message"} <Send size={18} />
-              </button>
-            </form>
+              </motion.button>
+            </motion.form>
           </MotionCard>
         </div>
       </div>

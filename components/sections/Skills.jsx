@@ -24,7 +24,7 @@ export default function Skills() {
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.5, delay: index * 0.05 }}
+              transition={{ duration: 0.5, delay: index * 0.04 }}
             >
               <h3 className="mb-5 text-xl font-semibold text-white">{group}</h3>
               <div className="flex flex-wrap gap-3">
