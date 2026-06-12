@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowDown, Download, Github, Linkedin, Mail } from "lucide-react";
+import BrandLogo from "../ui/BrandLogo";
 
 const badges = ["React", "Next.js", "Tailwind CSS", "REST APIs", "AI APIs", "Socket.IO"];
 const metrics = [
@@ -58,10 +59,13 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="flex items-center justify-between border-b border-white/10 pb-5">
-            <div>
-              <p className="text-sm text-slate-400">Current focus</p>
-              <h2 className="mt-1 text-2xl font-semibold tracking-tight text-white">Practical product interfaces</h2>
+          <div className="flex flex-col gap-4 border-b border-white/10 pb-5 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-center gap-4">
+              <BrandLogo decorative idPrefix="hero-logo" className="h-14 w-14 shrink-0 drop-shadow-[0_0_24px_rgba(125,211,252,0.2)]" />
+              <div>
+                <p className="text-sm text-slate-400">Current focus</p>
+                <h2 className="mt-1 text-2xl font-semibold tracking-tight text-white">Practical product interfaces</h2>
+              </div>
             </div>
             <span className="rounded-md border border-greenGlow/20 bg-greenGlow/10 px-3 py-1.5 text-xs font-semibold text-greenGlow">
               Available

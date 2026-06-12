@@ -2,6 +2,7 @@
 
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
+import BrandLogo from "../ui/BrandLogo";
 
 const navItems = [
   ["Home", "#home"],
@@ -49,8 +50,11 @@ export default function Navbar() {
   return (
     <header className="fixed left-0 right-0 top-0 z-50 px-4 pt-4">
       <nav className="glass mx-auto flex max-w-7xl items-center justify-between rounded-lg px-5 py-3">
-        <a href="#home" className="text-sm font-semibold uppercase tracking-[0.22em] text-white">
-          Amanpal Singh<span className="text-cyanGlow">.</span>
+        <a href="#home" className="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.22em] text-white">
+          <BrandLogo decorative idPrefix="navbar-logo" className="h-9 w-9 shrink-0 drop-shadow-[0_0_18px_rgba(125,211,252,0.18)]" />
+          <span>
+            Amanpal Singh<span className="text-cyanGlow">.</span>
+          </span>
         </a>
         <div className="hidden items-center gap-1 lg:flex">
           {navItems.map(([label, href]) => {
