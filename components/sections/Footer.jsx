@@ -3,7 +3,7 @@ import BrandLogo from "../ui/BrandLogo";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 px-4 py-8">
+    <footer className="border-t border-white/10 px-4 py-7 sm:py-8">
       <div className="mx-auto flex max-w-7xl flex-col gap-5 text-center md:flex-row md:items-center md:justify-between md:text-left">
         <div className="flex flex-col items-center gap-3 md:flex-row md:text-left">
           <BrandLogo decorative idPrefix="footer-logo" className="h-10 w-10 shrink-0" />
@@ -23,7 +23,7 @@ export default function Footer() {
             <Mail size={18} />
           </a>
         </div>
-        <p className="text-sm text-slate-500">&copy; 2026 Amanpal Singh. All rights reserved.</p>
+        <p className="text-xs text-slate-500 sm:text-sm">&copy; 2026 Amanpal Singh. All rights reserved.</p>
       </div>
     </footer>
   );

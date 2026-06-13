@@ -25,7 +25,7 @@ body {
 }
 
 section {
-  scroll-margin-top: 7.5rem;
+  scroll-margin-top: 6.5rem;
 }
 
 .ambient-shell {
@@ -73,7 +73,15 @@ section {
 }
 
 @media (max-width: 768px) {
+  section {
+    scroll-margin-top: 5.5rem;
+  }
+
   .section-pad {
-    padding-block: 3.5rem;
+    padding-block: 3rem;
+  }
+
+  .ambient-shell {
+    background-size: 34px 34px;
   }
 }

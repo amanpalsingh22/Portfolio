@@ -19,9 +19,9 @@ export default function Certificates() {
         <SectionHeader eyebrow="Certificates" title="Focused learning across full-stack, DSA, and AI." />
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {certificates.map((certificate, index) => (
-            <MotionCard key={certificate} delay={index * 0.04} className="p-6">
-              <Award className="mb-5 text-greenGlow" size={28} />
-              <h3 className="text-lg font-semibold leading-7 text-white">{certificate}</h3>
+            <MotionCard key={certificate} delay={index * 0.04} className="p-4 sm:p-6">
+              <Award className="mb-4 text-greenGlow sm:mb-5" size={26} />
+              <h3 className="text-base font-semibold leading-7 text-white sm:text-lg">{certificate}</h3>
             </MotionCard>
           ))}
         </div>

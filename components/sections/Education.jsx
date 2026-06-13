@@ -29,13 +29,13 @@ export default function Education() {
         <SectionHeader eyebrow="Education" title="Computer science foundation and consistent growth." />
         <div className="grid gap-5">
           {education.map((item, index) => (
-            <MotionCard key={item.school} delay={index * 0.05} className="p-6">
-              <div className="flex gap-4">
-                <div className="h-fit rounded-md border border-cyanGlow/20 bg-cyanGlow/10 p-3 text-cyanGlow">
-                  <GraduationCap size={24} />
+            <MotionCard key={item.school} delay={index * 0.05} className="p-4 sm:p-6">
+              <div className="flex gap-3 sm:gap-4">
+                <div className="h-fit shrink-0 rounded-md border border-cyanGlow/20 bg-cyanGlow/10 p-2.5 text-cyanGlow sm:p-3">
+                  <GraduationCap size={22} />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-white">{item.school}</h3>
+                  <h3 className="text-lg font-semibold text-white sm:text-xl">{item.school}</h3>
                   <p className="mt-2 text-slate-300">{item.degree}</p>
                   <p className="mt-2 text-sm text-cyan-100">{item.detail}</p>
                 </div>

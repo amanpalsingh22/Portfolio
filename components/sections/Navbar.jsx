@@ -49,10 +49,10 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-50 px-4 pt-4">
-      <nav className="glass mx-auto flex max-w-7xl items-center justify-between rounded-lg px-5 py-3">
-        <a href="#home" className="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.22em] text-white">
-          <BrandLogo decorative idPrefix="navbar-logo" className="h-9 w-9 shrink-0 drop-shadow-[0_0_18px_rgba(125,211,252,0.18)]" />
+    <header className="fixed left-0 right-0 top-0 z-50 px-3 pt-3 sm:px-4 sm:pt-4">
+      <nav className="glass mx-auto flex max-w-7xl items-center justify-between rounded-lg px-3 py-2.5 sm:px-5 sm:py-3">
+        <a href="#home" className="flex min-w-0 items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-white sm:gap-3 sm:text-sm sm:tracking-[0.22em]">
+          <BrandLogo decorative idPrefix="navbar-logo" className="h-8 w-8 shrink-0 drop-shadow-[0_0_18px_rgba(125,211,252,0.18)] sm:h-9 sm:w-9" />
           <span>
             Amanpal Singh<span className="text-cyanGlow">.</span>
           </span>
@@ -80,13 +80,13 @@ export default function Navbar() {
           type="button"
           aria-label="Toggle navigation"
           onClick={() => setOpen((value) => !value)}
-          className="rounded-md border border-white/10 p-2 text-slate-100 transition hover:bg-white/[0.06] lg:hidden"
+          className="ml-2 shrink-0 rounded-md border border-white/10 p-2 text-slate-100 transition hover:bg-white/[0.06] lg:hidden"
         >
           {open ? <X size={20} /> : <Menu size={20} />}
         </button>
       </nav>
       {open ? (
-        <div className="glass mx-auto mt-2 grid max-w-7xl gap-1 rounded-lg p-3 lg:hidden">
+        <div className="glass mx-auto mt-2 grid max-h-[calc(100svh-5.5rem)] max-w-7xl gap-1 overflow-y-auto rounded-lg p-2.5 lg:hidden">
           {navItems.map(([label, href]) => {
             const isActive = activeId === href.replace("#", "");
 

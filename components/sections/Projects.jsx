@@ -71,7 +71,7 @@ function ProjectMockup({ accent }) {
   const color = accent === "violet" ? "bg-violetGlow" : accent === "green" ? "bg-greenGlow" : "bg-cyanGlow";
 
   return (
-    <div className="flex h-[332px] flex-col rounded-lg border border-white/10 bg-ink/80 p-4">
+    <div className="flex h-[280px] flex-col rounded-lg border border-white/10 bg-ink/80 p-3 sm:h-[332px] sm:p-4">
       <div className="mb-4 flex items-center justify-between">
         <div className="flex gap-2">
           <span className="h-2.5 w-2.5 rounded-full bg-red-400" />
@@ -80,7 +80,7 @@ function ProjectMockup({ accent }) {
         </div>
         <span className="text-xs text-slate-500">preview</span>
       </div>
-      <div className="grid flex-1 gap-3 md:grid-cols-[0.7fr_1fr]">
+      <div className="grid flex-1 gap-3 min-[420px]:grid-cols-[0.7fr_1fr]">
         <div className="space-y-2">
           {[1, 2, 3, 4].map((item) => (
             <div key={item} className="h-8 rounded-md bg-white/10" />
@@ -165,12 +165,12 @@ function ProjectScreenshots({ screenshots, title, summary }) {
 
   return (
     <>
-      <div className="h-[332px] rounded-lg border border-white/10 bg-ink/80 p-3">
+      <div className="h-[280px] rounded-lg border border-white/10 bg-ink/80 p-2.5 sm:h-[332px] sm:p-3">
         <button
           type="button"
           onClick={() => setActiveIndex(0)}
           aria-label={`Open ${title} ${screenshots[0].label} screenshot`}
-          className="group relative h-56 w-full cursor-zoom-in overflow-hidden rounded-md border border-white/10 bg-black/40 text-left"
+          className="group relative h-44 w-full cursor-zoom-in overflow-hidden rounded-md border border-white/10 bg-black/40 text-left sm:h-56"
         >
           <Image
             src={screenshots[0].src}
@@ -180,22 +180,22 @@ function ProjectScreenshots({ screenshots, title, summary }) {
             className="object-contain object-center brightness-110 contrast-105 transition duration-300 group-hover:scale-[1.02]"
             loading="lazy"
           />
-          <span className="absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-cyanGlow/40 bg-black/55 text-cyan-50 shadow-glow backdrop-blur transition group-hover:scale-105 group-hover:bg-cyanGlow/20">
-            <Maximize2 size={16} />
+          <span className="absolute right-2 top-2 inline-flex h-8 w-8 items-center justify-center rounded-full border border-cyanGlow/40 bg-black/55 text-cyan-50 shadow-glow backdrop-blur transition group-hover:scale-105 group-hover:bg-cyanGlow/20 sm:right-3 sm:top-3 sm:h-9 sm:w-9">
+            <Maximize2 size={15} />
           </span>
           <div className="absolute inset-0 border-2 border-transparent transition group-hover:border-cyanGlow/60 group-focus-visible:border-cyanGlow" />
-          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black via-black/72 to-transparent p-3">
+          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black via-black/72 to-transparent p-2.5 sm:p-3">
             <div className="flex items-end justify-between gap-3">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-100">
+              <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-cyan-100 sm:text-xs sm:tracking-[0.18em]">
                 {screenshots[0].label}
               </p>
-              <span className="inline-flex items-center gap-1.5 rounded-md border border-cyanGlow/35 bg-cyanGlow/15 px-2.5 py-1.5 text-xs font-semibold text-cyan-50 shadow-glow transition group-hover:border-cyanGlow group-hover:bg-cyanGlow/25">
+              <span className="inline-flex items-center gap-1 rounded-md border border-cyanGlow/35 bg-cyanGlow/15 px-2 py-1 text-[0.68rem] font-semibold text-cyan-50 shadow-glow transition group-hover:border-cyanGlow group-hover:bg-cyanGlow/25 sm:gap-1.5 sm:px-2.5 sm:py-1.5 sm:text-xs">
                 <Images size={13} /> {screenshots.length} screens
               </span>
             </div>
           </div>
         </button>
-        <div className="mt-3 flex justify-center gap-2">
+        <div className="mt-3 flex justify-start gap-2 overflow-x-auto pb-1 sm:justify-center">
           {screenshots.slice(1).map((screenshot, index) => {
             const screenshotIndex = index + 1;
 
@@ -205,7 +205,7 @@ function ProjectScreenshots({ screenshots, title, summary }) {
                 key={screenshot.src}
                 onClick={() => setActiveIndex(screenshotIndex)}
                 aria-label={`Open ${title} ${screenshot.label} screenshot`}
-                className="group relative h-16 w-16 shrink-0 cursor-zoom-in overflow-hidden rounded-md border border-white/10 bg-white/5"
+                className="group relative h-14 w-14 shrink-0 cursor-zoom-in overflow-hidden rounded-md border border-white/10 bg-white/5 sm:h-16 sm:w-16"
               >
                 <Image
                   src={screenshot.src}
@@ -226,20 +226,20 @@ function ProjectScreenshots({ screenshots, title, summary }) {
           role="dialog"
           aria-modal="true"
           aria-label={`${title} ${activeScreenshot.label} screenshot preview`}
-          className="fixed inset-0 z-[999] flex items-center justify-center bg-black/45 p-4 backdrop-blur-xl md:p-8"
+          className="fixed inset-0 z-[999] flex items-center justify-center bg-black/45 p-2 backdrop-blur-xl sm:p-4 md:p-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.2 }}
           onClick={() => setActiveIndex(null)}
         >
           <motion.div
-            className="glass flex max-h-[92vh] w-full max-w-5xl flex-col overflow-hidden rounded-2xl border-cyanGlow/20 shadow-[0_30px_120px_rgba(0,0,0,0.65)]"
+            className="glass flex max-h-[94svh] w-full max-w-5xl flex-col overflow-hidden rounded-xl border-cyanGlow/20 shadow-[0_30px_120px_rgba(0,0,0,0.65)] sm:rounded-2xl"
             initial={{ opacity: 0, scale: 0.97, y: 14 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.24, ease: "easeOut" }}
             onClick={(event) => event.stopPropagation()}
           >
-            <div className="flex items-start justify-between gap-3 border-b border-white/10 px-4 py-4 md:px-5">
+            <div className="flex items-start justify-between gap-3 border-b border-white/10 px-3 py-3 sm:px-4 sm:py-4 md:px-5">
               <div className="min-w-0">
                 <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
                   <p className="truncate text-sm font-semibold text-white md:text-base">{title}</p>
@@ -247,7 +247,7 @@ function ProjectScreenshots({ screenshots, title, summary }) {
                     {activeIndex + 1} / {screenshots.length}
                   </span>
                 </div>
-                <p className="mt-1 text-xs uppercase tracking-[0.18em] text-cyanGlow">
+                <p className="mt-1 text-[0.68rem] uppercase tracking-[0.14em] text-cyanGlow sm:text-xs sm:tracking-[0.18em]">
                   {activeScreenshot.label}
                 </p>
                 <p className="mt-1 hidden text-sm text-slate-300 md:block">
@@ -275,7 +275,7 @@ function ProjectScreenshots({ screenshots, title, summary }) {
             </div>
 
             <div
-              className="relative h-[50vh] min-h-[280px] overflow-hidden bg-[radial-gradient(circle_at_center,rgba(24,215,255,0.08),rgba(5,7,18,0.86)_62%)] md:h-[58vh]"
+              className="relative h-[50svh] min-h-[220px] overflow-hidden bg-[radial-gradient(circle_at_center,rgba(24,215,255,0.08),rgba(5,7,18,0.86)_62%)] sm:min-h-[280px] md:h-[58vh]"
               onTouchStart={handleTouchStart}
               onTouchEnd={handleTouchEnd}
             >
@@ -291,7 +291,7 @@ function ProjectScreenshots({ screenshots, title, summary }) {
                 type="button"
                 onClick={showPrevious}
                 aria-label="Previous screenshot"
-                className="absolute left-3 top-1/2 inline-flex -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/40 p-2.5 text-white shadow-glow backdrop-blur transition hover:border-cyanGlow hover:bg-cyanGlow/15 md:left-5"
+                className="absolute left-2 top-1/2 inline-flex -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/40 p-2 text-white shadow-glow backdrop-blur transition hover:border-cyanGlow hover:bg-cyanGlow/15 sm:left-3 sm:p-2.5 md:left-5"
               >
                 <ChevronLeft size={20} />
               </button>
@@ -299,13 +299,13 @@ function ProjectScreenshots({ screenshots, title, summary }) {
                 type="button"
                 onClick={showNext}
                 aria-label="Next screenshot"
-                className="absolute right-3 top-1/2 inline-flex -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/40 p-2.5 text-white shadow-glow backdrop-blur transition hover:border-cyanGlow hover:bg-cyanGlow/15 md:right-5"
+                className="absolute right-2 top-1/2 inline-flex -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/40 p-2 text-white shadow-glow backdrop-blur transition hover:border-cyanGlow hover:bg-cyanGlow/15 sm:right-3 sm:p-2.5 md:right-5"
               >
                 <ChevronRight size={20} />
               </button>
             </div>
 
-            <div className="border-t border-white/10 bg-white/[0.03] p-3 md:p-4">
+            <div className="border-t border-white/10 bg-white/[0.03] p-2.5 sm:p-3 md:p-4">
               <div className="flex justify-center gap-2 overflow-x-auto pb-1">
               {screenshots.map((screenshot, index) => (
                 <button
@@ -314,7 +314,7 @@ function ProjectScreenshots({ screenshots, title, summary }) {
                   onClick={() => setActiveIndex(index)}
                   aria-label={`View ${screenshot.label} screenshot`}
                   title={screenshot.label}
-                  className={`group h-16 w-16 shrink-0 rounded-lg border p-1.5 text-left transition md:h-20 md:w-20 ${activeIndex === index ? "scale-[1.03] border-cyanGlow bg-cyanGlow/10 shadow-glow" : "border-white/10 bg-white/5 opacity-70 hover:opacity-100"}`}
+                  className={`group h-14 w-14 shrink-0 rounded-lg border p-1.5 text-left transition sm:h-16 sm:w-16 md:h-20 md:w-20 ${activeIndex === index ? "scale-[1.03] border-cyanGlow bg-cyanGlow/10 shadow-glow" : "border-white/10 bg-white/5 opacity-70 hover:opacity-100"}`}
                 >
                   <span className="relative block h-full w-full overflow-hidden rounded-md border border-white/10">
                     <Image
@@ -329,8 +329,8 @@ function ProjectScreenshots({ screenshots, title, summary }) {
                 </button>
               ))}
               </div>
-              <p className="mt-3 text-center text-xs text-slate-400">
-                Use left/right arrows or swipe to browse. Press Esc to close.
+              <p className="mt-2 text-center text-[0.7rem] text-slate-400 sm:mt-3 sm:text-xs">
+                Swipe or use arrows to browse. Press Esc to close.
               </p>
             </div>
           </motion.div>
@@ -342,7 +342,7 @@ function ProjectScreenshots({ screenshots, title, summary }) {
 }
 
 function ProjectAction({ href, icon: Icon, label }) {
-  const className = "inline-flex min-h-10 items-center justify-center gap-1.5 rounded-md border px-3 py-2 text-xs font-semibold transition";
+  const className = "inline-flex min-h-10 w-full items-center justify-center gap-1.5 rounded-md border px-3 py-2 text-xs font-semibold transition";
 
   if (!href) {
     return (
@@ -379,7 +379,7 @@ export default function Projects() {
         />
         <div className="grid items-stretch gap-6 lg:grid-cols-2 xl:grid-cols-3">
           {projects.map((project, index) => (
-            <MotionCard key={project.title} delay={index * 0.05} className="flex h-full flex-col p-5">
+            <MotionCard key={project.title} delay={index * 0.05} className="flex h-full flex-col p-4 sm:p-5">
               {project.screenshots ? (
                 <ProjectScreenshots screenshots={project.screenshots} title={project.title} summary={project.gallerySummary} />
               ) : (
@@ -387,7 +387,7 @@ export default function Projects() {
               )}
               <div className="mt-5 flex-1">
                 <p className="text-sm font-medium text-cyanGlow">{project.duration}</p>
-                <h3 className="mt-2 text-2xl font-semibold text-white">{project.title}</h3>
+                <h3 className="mt-2 text-xl font-semibold text-white sm:text-2xl">{project.title}</h3>
                 <p className="mt-3 text-sm leading-6 text-slate-300">{project.description}</p>
                 <ul className="mt-4 grid gap-2 text-sm text-slate-300">
                   {project.features.map((feature) => (
@@ -398,7 +398,7 @@ export default function Projects() {
                   ))}
                 </ul>
               </div>
-              <div className="mt-6 grid grid-cols-3 gap-2">
+              <div className="mt-5 grid grid-cols-1 gap-2 min-[420px]:grid-cols-3 sm:mt-6">
                 <ProjectAction href={project.detailsUrl} icon={MonitorUp} label="Details" />
                 <ProjectAction href={project.githubUrl} icon={Github} label="GitHub" />
                 <ProjectAction href={project.demoUrl} icon={Radio} label={project.demoLabel || "Demo"} />

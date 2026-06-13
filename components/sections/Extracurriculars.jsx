@@ -28,11 +28,11 @@ export default function Extracurriculars() {
         <SectionHeader eyebrow="Beyond Code" title="Leadership, service, and calm execution." />
         <div className="grid gap-5 md:grid-cols-2">
           {items.map(({ title, date, description, Icon }, index) => (
-            <MotionCard key={title} delay={index * 0.05} className="p-6">
-              <Icon className="mb-5 text-violetGlow" size={28} />
+            <MotionCard key={title} delay={index * 0.05} className="p-4 sm:p-6">
+              <Icon className="mb-4 text-violetGlow sm:mb-5" size={26} />
               <p className="text-sm font-medium text-cyanGlow">{date}</p>
-              <h3 className="mt-2 text-2xl font-semibold text-white">{title}</h3>
-              <p className="mt-3 leading-7 text-slate-300">{description}</p>
+              <h3 className="mt-2 text-xl font-semibold text-white sm:text-2xl">{title}</h3>
+              <p className="mt-3 text-sm leading-6 text-slate-300 sm:text-base sm:leading-7">{description}</p>
             </MotionCard>
           ))}
         </div>

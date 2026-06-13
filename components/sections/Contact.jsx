@@ -86,12 +86,12 @@ export default function Contact() {
         <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
           <div className="grid gap-4">
             {links.map(([label, value, href, Icon], index) => (
-              <MotionCard key={label} delay={index * 0.03} className="p-5">
+              <MotionCard key={label} delay={index * 0.03} className="p-4 sm:p-5">
                 <a href={href} target={href.startsWith("http") ? "_blank" : undefined} className="flex items-center gap-4">
-                  <span className="rounded-md border border-cyanGlow/20 bg-cyanGlow/10 p-3 text-cyanGlow">
-                    <Icon size={22} />
+                  <span className="shrink-0 rounded-md border border-cyanGlow/20 bg-cyanGlow/10 p-3 text-cyanGlow">
+                    <Icon size={20} />
                   </span>
-                  <span>
+                  <span className="min-w-0">
                     <span className="block text-sm text-slate-400">{label}</span>
                     <span className="block break-all font-semibold text-white">{value}</span>
                   </span>
@@ -99,7 +99,7 @@ export default function Contact() {
               </MotionCard>
             ))}
           </div>
-          <MotionCard className="p-6 md:p-8">
+          <MotionCard className="p-4 sm:p-6 md:p-8">
             <motion.form
               className="grid gap-4"
               onSubmit={handleSubmit}
@@ -111,27 +111,27 @@ export default function Contact() {
               <motion.div className="grid gap-4 md:grid-cols-2" variants={formVariants}>
                 <motion.label className="grid gap-2 text-sm text-slate-300" variants={fieldVariants}>
                   Name
-                  <input name="name" value={form.name} onChange={updateField} required className="rounded-md border border-white/10 bg-white/10 px-4 py-3 text-white outline-none transition focus:border-cyanGlow focus:shadow-glow" placeholder="Your name" />
+                  <input name="name" value={form.name} onChange={updateField} required className="rounded-md border border-white/10 bg-white/10 px-4 py-3 text-base text-white outline-none transition focus:border-cyanGlow focus:shadow-glow" placeholder="Your name" />
                 </motion.label>
                 <motion.label className="grid gap-2 text-sm text-slate-300" variants={fieldVariants}>
                   Email
-                  <input name="email" type="email" value={form.email} onChange={updateField} required className="rounded-md border border-white/10 bg-white/10 px-4 py-3 text-white outline-none transition focus:border-cyanGlow focus:shadow-glow" placeholder="you@example.com" />
+                  <input name="email" type="email" value={form.email} onChange={updateField} required className="rounded-md border border-white/10 bg-white/10 px-4 py-3 text-base text-white outline-none transition focus:border-cyanGlow focus:shadow-glow" placeholder="you@example.com" />
                 </motion.label>
               </motion.div>
               <motion.label className="grid gap-2 text-sm text-slate-300" variants={fieldVariants}>
                 Subject
-                <input name="subject" value={form.subject} onChange={updateField} required className="rounded-md border border-white/10 bg-white/10 px-4 py-3 text-white outline-none transition focus:border-cyanGlow focus:shadow-glow" placeholder="Project, internship, or role" />
+                <input name="subject" value={form.subject} onChange={updateField} required className="rounded-md border border-white/10 bg-white/10 px-4 py-3 text-base text-white outline-none transition focus:border-cyanGlow focus:shadow-glow" placeholder="Project, internship, or role" />
               </motion.label>
               <motion.label className="grid gap-2 text-sm text-slate-300" variants={fieldVariants}>
                 Message
-                <textarea name="message" value={form.message} onChange={updateField} required rows={6} className="resize-none rounded-md border border-white/10 bg-white/10 px-4 py-3 text-white outline-none transition focus:border-cyanGlow focus:shadow-glow" placeholder="Tell me what you want to build." />
+                <textarea name="message" value={form.message} onChange={updateField} required rows={5} className="resize-none rounded-md border border-white/10 bg-white/10 px-4 py-3 text-base text-white outline-none transition focus:border-cyanGlow focus:shadow-glow md:rows-6" placeholder="Tell me what you want to build." />
               </motion.label>
               {status.message ? (
                 <motion.p variants={fieldVariants} className={`rounded-md border px-4 py-3 text-sm ${status.type === "success" ? "border-greenGlow/30 bg-greenGlow/10 text-green-100" : "border-red-400/30 bg-red-400/10 text-red-100"}`}>
                   {status.message}
                 </motion.p>
               ) : null}
-              <motion.button variants={fieldVariants} type="submit" disabled={isSending} className="inline-flex w-fit items-center gap-2 rounded-md bg-cyanGlow px-5 py-3 font-semibold text-ink transition hover:-translate-y-1 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0">
+              <motion.button variants={fieldVariants} type="submit" disabled={isSending} className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-cyanGlow px-5 py-3 font-semibold text-ink transition hover:-translate-y-1 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 sm:w-fit">
                 {isSending ? "Sending..." : "Send Message"} <Send size={18} />
               </motion.button>
             </motion.form>

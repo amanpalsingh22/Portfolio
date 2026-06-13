@@ -20,18 +20,18 @@ export default function Skills() {
           {Object.entries(skillGroups).map(([group, skills], index) => (
             <motion.div
               key={group}
-              className="glass rounded-lg p-6"
+              className="glass rounded-lg p-4 sm:p-6"
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.5, delay: index * 0.04 }}
             >
-              <h3 className="mb-5 text-xl font-semibold text-white">{group}</h3>
-              <div className="flex flex-wrap gap-3">
+              <h3 className="mb-4 text-lg font-semibold text-white sm:mb-5 sm:text-xl">{group}</h3>
+              <div className="flex flex-wrap gap-2.5 sm:gap-3">
                 {skills.map((skill) => (
                   <span
                     key={skill}
-                    className="rounded-md border border-cyanGlow/20 bg-cyanGlow/10 px-3 py-2 text-sm text-cyan-50 transition hover:-translate-y-1 hover:border-cyanGlow/70 hover:bg-cyanGlow/15 hover:shadow-glow"
+                    className="rounded-md border border-cyanGlow/20 bg-cyanGlow/10 px-2.5 py-1.5 text-xs text-cyan-50 transition hover:-translate-y-1 hover:border-cyanGlow/70 hover:bg-cyanGlow/15 hover:shadow-glow sm:px-3 sm:py-2 sm:text-sm"
                   >
                     {skill}
                   </span>
