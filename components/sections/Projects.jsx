@@ -18,11 +18,8 @@ const projects = [
       "Published Android app on Google Play",
       "Daily quiz and category-based learning",
       "Image guessing and 4/6 option quiz modes",
-      "Flashcards, timer quiz, and true/false quiz",
-      "History timeline learning with explanations",
-      "Firebase services, streaks, levels, and notifications"
+      "History timeline learning with explanations"
     ],
-    tech: ["Kotlin", "Jetpack Compose", "Android SDK", "Retrofit", "Firebase", "REST APIs"],
     accent: "green",
     githubUrl: "https://github.com/amanpalsingh22/Germany-Quiz",
     demoUrl: "https://play.google.com/store/apps/details?id=com.studex.germanyhistoryquiz&pcampaignid=web_share",
@@ -45,19 +42,15 @@ const projects = [
       "Real-time messaging",
       "Socket.IO integration",
       "Cloudinary media uploads",
-      "Custom theme switching",
-      "Responsive mobile-first UI",
-      "Tailwind and DaisyUI design system"
+      "Custom theme switching"
     ],
-    tech: ["HTML", "CSS", "Tailwind CSS", "React.js", "DaisyUI", "Socket.IO", "Cloudinary"],
     accent: "cyan",
-    gallerySummary: "Authentication, profile management, themes, and chat workspace views.",
+    gallerySummary: "Polished MacBook mockups showing the chat workspace, login flow, settings, and profile screens.",
     screenshots: [
-      { src: "/projects/chatter/dashboard.png", label: "Chat workspace" },
-      { src: "/projects/chatter/themes.png", label: "Theme picker" },
-      { src: "/projects/chatter/profile.png", label: "Profile" },
-      { src: "/projects/chatter/login.png", label: "Login" },
-      { src: "/projects/chatter/signup.png", label: "Signup" }
+      { src: "/projects/chatter/chats-page-showcase-v2.png", label: "Chats page" },
+      { src: "/projects/chatter/login-page-showcase-v2.png", label: "Login page" },
+      { src: "/projects/chatter/settings-page-showcase-v2.png", label: "Settings page" },
+      { src: "/projects/chatter/profile-page-showcase-v2.png", label: "Profile page" }
     ]
   },
   {
@@ -68,29 +61,9 @@ const projects = [
     features: [
       "PDF upload",
       "AI-generated quiz questions",
-      "ChatGPT API integration",
-      "Responsive quiz management UI",
-      "Frontend and backend implementation"
+      "ChatGPT API integration"
     ],
-    tech: ["HTML", "CSS", "Bootstrap", "JavaScript", "React.js", "Tailwind CSS", "ChatGPT API"],
     accent: "violet"
-  },
-  {
-    title: "Laboratory Operations Dashboard",
-    duration: "Virtuous Experience",
-    description:
-      "A role-based operations dashboard built during professional experience at Virtuous for managing animal research laboratory workflows.",
-    features: [
-      "Role-based dashboards",
-      "Animal and housing management",
-      "Inventory management",
-      "Request tracking",
-      "Task handling",
-      "REST API integration",
-      "Analytics-oriented navigation"
-    ],
-    tech: ["Next.js", "React", "Material UI", "REST APIs"],
-    accent: "green"
   }
 ];
 
@@ -401,7 +374,7 @@ export default function Projects() {
       <div className="mx-auto max-w-7xl">
         <SectionHeader
           eyebrow="Featured Projects"
-          title="Real-world builds across realtime, AI, and dashboards."
+          title="Real-world builds across mobile, realtime, and AI."
           description="Each project highlights practical product thinking: responsive UI, API workflows, integration details, and clean user experience."
         />
         <div className="grid items-stretch gap-6 lg:grid-cols-2 xl:grid-cols-3">
@@ -424,13 +397,6 @@ export default function Projects() {
                     </li>
                   ))}
                 </ul>
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {project.tech.map((tech) => (
-                    <span key={tech} className="rounded-md border border-white/10 bg-white/10 px-2.5 py-1.5 text-xs text-slate-200">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
               </div>
               <div className="mt-6 grid grid-cols-3 gap-2">
                 <ProjectAction href={project.detailsUrl} icon={MonitorUp} label="Details" />

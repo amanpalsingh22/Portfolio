@@ -6,12 +6,13 @@ import BrandLogo from "../ui/BrandLogo";
 
 const navItems = [
   ["Home", "#home"],
-  ["About", "#about"],
-  ["Skills", "#skills"],
-  ["Experience", "#experience"],
   ["Projects", "#projects"],
+  ["Experience", "#experience"],
+  ["Skills", "#skills"],
+  ["About", "#about"],
   ["Certificates", "#certificates"],
   ["Education", "#education"],
+  ["Extracurriculars", "#extracurriculars"],
   ["Contact", "#contact"]
 ];
 

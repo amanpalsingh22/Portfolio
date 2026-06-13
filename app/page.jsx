@@ -9,7 +9,6 @@ import Hero from "@/components/sections/Hero";
 import Navbar from "@/components/sections/Navbar";
 import Projects from "@/components/sections/Projects";
 import Skills from "@/components/sections/Skills";
-import WhyHireMe from "@/components/sections/WhyHireMe";
 
 export default function Home() {
   return (
@@ -18,14 +17,13 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <About />
-        <Skills />
-        <Experience />
         <Projects />
+        <Experience />
+        <Skills />
+        <About />
         <Certificates />
         <Education />
         <Extracurriculars />
-        <WhyHireMe />
         <Contact />
       </main>
       <Footer />

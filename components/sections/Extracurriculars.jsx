@@ -23,7 +23,7 @@ const items = [
 
 export default function Extracurriculars() {
   return (
-    <section className="section-pad px-4">
+    <section id="extracurriculars" className="section-pad px-4">
       <div className="mx-auto max-w-6xl">
         <SectionHeader eyebrow="Beyond Code" title="Leadership, service, and calm execution." />
         <div className="grid gap-5 md:grid-cols-2">
