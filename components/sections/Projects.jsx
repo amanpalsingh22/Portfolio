@@ -45,6 +45,9 @@ const projects = [
       "Custom theme switching"
     ],
     accent: "cyan",
+    githubUrl: "https://github.com/amanpalsingh22/Chatter",
+    demoUrl: "https://chatter-72zw.onrender.com",
+    demoLabel: "Live Demo",
     gallerySummary: "Polished MacBook mockups showing the chat workspace, login flow, settings, and profile screens.",
     screenshots: [
       { src: "/projects/chatter/chats-page-showcase-v2.png", label: "Chats page" },
