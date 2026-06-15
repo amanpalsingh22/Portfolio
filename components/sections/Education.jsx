@@ -35,9 +35,9 @@ export default function Education() {
                   <GraduationCap size={22} />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-white sm:text-xl">{item.school}</h3>
-                  <p className="mt-2 text-slate-300">{item.degree}</p>
-                  <p className="mt-2 text-sm text-cyan-100">{item.detail}</p>
+                  <h3 className="text-strong text-lg font-semibold sm:text-xl">{item.school}</h3>
+                  <p className="text-muted mt-2">{item.degree}</p>
+                  <p className="mt-2 text-sm font-medium text-cyanGlow">{item.detail}</p>
                 </div>
               </div>
             </MotionCard>

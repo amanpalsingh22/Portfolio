@@ -50,28 +50,28 @@ export default function Experience() {
               <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyanGlow sm:text-sm sm:tracking-[0.22em]">July 2025 - Jan 2026</p>
-                  <h3 className="mt-2 text-xl font-semibold text-white sm:text-2xl">Frontend / Full-Stack Developer</h3>
-                  <p className="mt-2 text-base text-slate-300 sm:text-lg">Virtuous / Vivgram</p>
+                  <h3 className="text-strong mt-2 text-xl font-semibold sm:text-2xl">Frontend / Full-Stack Developer</h3>
+                  <p className="text-muted mt-2 text-base sm:text-lg">Virtuous / Vivgram</p>
                 </div>
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md border border-white/10 bg-white/10 text-cyanGlow">
+                <div className="border-soft bg-tint flex h-12 w-12 shrink-0 items-center justify-center rounded-md border text-cyanGlow">
                   <BriefcaseBusiness size={24} />
                 </div>
               </div>
 
-              <p className="mt-5 max-w-3xl text-sm leading-6 text-slate-300">
+              <p className="text-muted mt-5 max-w-3xl text-sm leading-6">
                 Built and improved frontend workflows for a research facility operations platform that helps teams manage animal care tasks, room and cage activity, requests, protocols, inventory, alerts, and analytics from role-specific dashboards.
               </p>
 
               <div className="mt-5 grid gap-2 min-[430px]:grid-cols-3 sm:gap-3">
                 {highlights.map(([label, value]) => (
-                  <div key={label} className="rounded-md border border-white/10 bg-white/[0.04] p-3">
-                    <p className="text-xs uppercase tracking-[0.16em] text-slate-500">{label}</p>
-                    <p className="mt-1.5 text-base font-semibold text-white">{value}</p>
+                  <div key={label} className="border-soft bg-soft rounded-md border p-3">
+                    <p className="text-subtle text-xs uppercase tracking-[0.16em]">{label}</p>
+                    <p className="text-strong mt-1.5 text-base font-semibold">{value}</p>
                   </div>
                 ))}
               </div>
 
-              <ul className="mt-5 grid gap-2 text-sm text-slate-300">
+              <ul className="text-muted mt-5 grid gap-2 text-sm">
                 {points.map((point) => (
                   <li key={point} className="flex gap-3 leading-6">
                     <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-greenGlow" />
@@ -81,12 +81,12 @@ export default function Experience() {
               </ul>
             </div>
 
-            <div className="border-t border-white/10 bg-white/[0.025] p-4 sm:p-5 md:p-6 lg:border-l lg:border-t-0">
+            <div className="border-soft bg-soft border-t p-4 sm:p-5 md:p-6 lg:border-l lg:border-t-0">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyanGlow">Key work</p>
                 <div className="mt-4 grid gap-2 min-[520px]:grid-cols-2 lg:grid-cols-1">
                   {modules.map(([module, Icon]) => (
-                    <div key={module} className="flex items-center gap-3 rounded-md border border-white/10 bg-white/[0.04] px-3 py-3 text-sm text-slate-300">
+                    <div key={module} className="border-soft bg-raised text-muted flex items-center gap-3 rounded-md border px-3 py-3 text-sm">
                       <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-cyanGlow/10 text-cyanGlow">
                         <Icon size={16} />
                       </span>

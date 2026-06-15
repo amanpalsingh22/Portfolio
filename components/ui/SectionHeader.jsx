@@ -14,9 +14,9 @@ export default function SectionHeader({ eyebrow, title, description }) {
       <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyanGlow sm:tracking-[0.24em]">
         {eyebrow}
       </p>
-      <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl md:text-4xl">{title}</h2>
+      <h2 className="text-strong text-2xl font-semibold tracking-tight sm:text-3xl md:text-4xl">{title}</h2>
       {description ? (
-        <p className="mt-3 text-sm leading-6 text-slate-300 sm:text-base md:mt-4 md:text-lg md:leading-7">{description}</p>
+        <p className="text-muted mt-3 text-sm leading-6 sm:text-base md:mt-4 md:text-lg md:leading-7">{description}</p>
       ) : null}
     </motion.div>
   );

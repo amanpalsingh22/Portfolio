@@ -26,12 +26,12 @@ export default function Skills() {
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.5, delay: index * 0.04 }}
             >
-              <h3 className="mb-4 text-lg font-semibold text-white sm:mb-5 sm:text-xl">{group}</h3>
+              <h3 className="text-strong mb-4 text-lg font-semibold sm:mb-5 sm:text-xl">{group}</h3>
               <div className="flex flex-wrap gap-2.5 sm:gap-3">
                 {skills.map((skill) => (
                   <span
                     key={skill}
-                    className="rounded-md border border-cyanGlow/20 bg-cyanGlow/10 px-2.5 py-1.5 text-xs text-cyan-50 transition hover:-translate-y-1 hover:border-cyanGlow/70 hover:bg-cyanGlow/15 hover:shadow-glow sm:px-3 sm:py-2 sm:text-sm"
+                    className="rounded-md border border-cyanGlow/20 bg-cyanGlow/10 px-2.5 py-1.5 text-xs font-medium text-cyanGlow transition hover:-translate-y-1 hover:border-cyanGlow/70 hover:bg-cyanGlow/15 hover:shadow-glow sm:px-3 sm:py-2 sm:text-sm"
                   >
                     {skill}
                   </span>

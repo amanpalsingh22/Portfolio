@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: "class",
   content: [
     "./app/**/*.{js,jsx,ts,tsx}",
     "./components/**/*.{js,jsx,ts,tsx}"
@@ -7,20 +8,20 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        ink: "#070a10",
-        panel: "#10141f",
-        cyanGlow: "#7dd3fc",
-        blueGlow: "#93c5fd",
-        violetGlow: "#c4b5fd",
-        greenGlow: "#86efac"
+        ink: "rgb(var(--color-ink) / <alpha-value>)",
+        panel: "rgb(var(--color-panel) / <alpha-value>)",
+        cyanGlow: "rgb(var(--color-cyan-glow) / <alpha-value>)",
+        blueGlow: "rgb(var(--color-blue-glow) / <alpha-value>)",
+        violetGlow: "rgb(var(--color-violet-glow) / <alpha-value>)",
+        greenGlow: "rgb(var(--color-green-glow) / <alpha-value>)"
       },
       boxShadow: {
-        glow: "0 18px 50px rgba(0, 0, 0, 0.28)",
-        violet: "0 18px 50px rgba(0, 0, 0, 0.24)"
+        glow: "var(--shadow-glow)",
+        violet: "var(--shadow-violet)"
       },
       backgroundImage: {
         "grid-pattern":
-          "linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px)"
+          "linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px)"
       }
     }
   },

@@ -20,13 +20,13 @@ export default function WhyHireMe() {
           {reasons.map((reason, index) => (
             <MotionCard key={reason} delay={index * 0.04} className="p-6">
               <CheckCircle2 className="mb-5 text-greenGlow" size={28} />
-              <p className="leading-7 text-slate-200">{reason}</p>
+              <p className="text-muted leading-7">{reason}</p>
             </MotionCard>
           ))}
         </div>
         <div className="mt-10 rounded-lg border border-cyanGlow/20 bg-cyanGlow/10 p-8 text-center">
-          <h3 className="text-3xl font-semibold text-white">Let&apos;s build something impactful together.</h3>
-          <a href="#contact" className="mt-6 inline-flex rounded-md bg-white px-5 py-3 font-semibold text-ink transition hover:-translate-y-1">
+          <h3 className="text-strong text-3xl font-semibold">Let&apos;s build something impactful together.</h3>
+          <a href="#contact" className="mt-6 inline-flex rounded-md bg-ink px-5 py-3 font-semibold text-white transition hover:-translate-y-1 dark:bg-white dark:text-ink dark:hover:bg-cyan-100">
             Start a Conversation
           </a>
         </div>

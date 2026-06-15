@@ -11,7 +11,7 @@ export default function BrandLogo({ className = "", decorative = false, idPrefix
       className={className}
       {...accessibilityProps}
     >
-      <rect x="3" y="3" width="58" height="58" rx="16" fill="#060A12" />
+      <rect x="3" y="3" width="58" height="58" rx="16" fill="var(--logo-outer)" />
       <rect x="4" y="4" width="56" height="56" rx="15" fill={`url(#${idPrefix}-surface)`} />
       <rect x="4.5" y="4.5" width="55" height="55" rx="14.5" stroke={`url(#${idPrefix}-border)`} strokeOpacity="0.9" />
       <path d="M14 18.5H26" stroke="#7DD3FC" strokeWidth="2" strokeLinecap="round" opacity="0.72" />
@@ -31,7 +31,7 @@ export default function BrandLogo({ className = "", decorative = false, idPrefix
       />
       <path
         d="M43.6 21.5H37.7C35.2 21.5 33.6 22.8 33.6 24.8C33.6 27 35.2 28.2 38.9 29.2L41.2 29.8C44.8 30.8 46.8 32.9 46.8 36.1C46.8 40.2 43.7 42.5 38.9 42.5H32.7"
-        stroke="#F8FAFC"
+        stroke="var(--logo-letter-secondary)"
         strokeOpacity="0.92"
         strokeWidth="3.2"
         strokeLinecap="round"
@@ -47,9 +47,9 @@ export default function BrandLogo({ className = "", decorative = false, idPrefix
       <circle cx="49.2" cy="34.2" r="1.8" fill="#7DD3FC" />
       <defs>
         <linearGradient id={`${idPrefix}-surface`} x1="11" y1="8" x2="54" y2="58" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#0D1422" />
-          <stop offset="0.58" stopColor="#080C14" />
-          <stop offset="1" stopColor="#101827" />
+          <stop stopColor="var(--logo-surface-start)" />
+          <stop offset="0.58" stopColor="var(--logo-surface-mid)" />
+          <stop offset="1" stopColor="var(--logo-surface-end)" />
         </linearGradient>
         <linearGradient id={`${idPrefix}-border`} x1="7" y1="6" x2="58" y2="59" gradientUnits="userSpaceOnUse">
           <stop stopColor="#7DD3FC" />

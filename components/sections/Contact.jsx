@@ -92,8 +92,8 @@ export default function Contact() {
                     <Icon size={20} />
                   </span>
                   <span className="min-w-0">
-                    <span className="block text-sm text-slate-400">{label}</span>
-                    <span className="block break-all font-semibold text-white">{value}</span>
+                    <span className="text-subtle block text-sm">{label}</span>
+                    <span className="text-strong block break-all font-semibold">{value}</span>
                   </span>
                 </a>
               </MotionCard>
@@ -109,29 +109,29 @@ export default function Contact() {
               viewport={{ once: true, amount: 0.35 }}
             >
               <motion.div className="grid gap-4 md:grid-cols-2" variants={formVariants}>
-                <motion.label className="grid gap-2 text-sm text-slate-300" variants={fieldVariants}>
+                <motion.label className="text-muted grid gap-2 text-sm" variants={fieldVariants}>
                   Name
-                  <input name="name" value={form.name} onChange={updateField} required className="rounded-md border border-white/10 bg-white/10 px-4 py-3 text-base text-white outline-none transition focus:border-cyanGlow focus:shadow-glow" placeholder="Your name" />
+                  <input name="name" value={form.name} onChange={updateField} required className="input-field rounded-md px-4 py-3 text-base outline-none transition" placeholder="Your name" />
                 </motion.label>
-                <motion.label className="grid gap-2 text-sm text-slate-300" variants={fieldVariants}>
+                <motion.label className="text-muted grid gap-2 text-sm" variants={fieldVariants}>
                   Email
-                  <input name="email" type="email" value={form.email} onChange={updateField} required className="rounded-md border border-white/10 bg-white/10 px-4 py-3 text-base text-white outline-none transition focus:border-cyanGlow focus:shadow-glow" placeholder="you@example.com" />
+                  <input name="email" type="email" value={form.email} onChange={updateField} required className="input-field rounded-md px-4 py-3 text-base outline-none transition" placeholder="you@example.com" />
                 </motion.label>
               </motion.div>
-              <motion.label className="grid gap-2 text-sm text-slate-300" variants={fieldVariants}>
+              <motion.label className="text-muted grid gap-2 text-sm" variants={fieldVariants}>
                 Subject
-                <input name="subject" value={form.subject} onChange={updateField} required className="rounded-md border border-white/10 bg-white/10 px-4 py-3 text-base text-white outline-none transition focus:border-cyanGlow focus:shadow-glow" placeholder="Project, internship, or role" />
+                <input name="subject" value={form.subject} onChange={updateField} required className="input-field rounded-md px-4 py-3 text-base outline-none transition" placeholder="Project, internship, or role" />
               </motion.label>
-              <motion.label className="grid gap-2 text-sm text-slate-300" variants={fieldVariants}>
+              <motion.label className="text-muted grid gap-2 text-sm" variants={fieldVariants}>
                 Message
-                <textarea name="message" value={form.message} onChange={updateField} required rows={5} className="resize-none rounded-md border border-white/10 bg-white/10 px-4 py-3 text-base text-white outline-none transition focus:border-cyanGlow focus:shadow-glow md:rows-6" placeholder="Tell me what you want to build." />
+                <textarea name="message" value={form.message} onChange={updateField} required rows={5} className="input-field resize-none rounded-md px-4 py-3 text-base outline-none transition md:rows-6" placeholder="Tell me what you want to build." />
               </motion.label>
               {status.message ? (
-                <motion.p variants={fieldVariants} className={`rounded-md border px-4 py-3 text-sm ${status.type === "success" ? "border-greenGlow/30 bg-greenGlow/10 text-green-100" : "border-red-400/30 bg-red-400/10 text-red-100"}`}>
+                <motion.p variants={fieldVariants} className={`rounded-md border px-4 py-3 text-sm ${status.type === "success" ? "border-greenGlow/30 bg-greenGlow/10 text-green-700 dark:text-green-100" : "border-red-400/30 bg-red-400/10 text-red-700 dark:text-red-100"}`}>
                   {status.message}
                 </motion.p>
               ) : null}
-              <motion.button variants={fieldVariants} type="submit" disabled={isSending} className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-cyanGlow px-5 py-3 font-semibold text-ink transition hover:-translate-y-1 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 sm:w-fit">
+              <motion.button variants={fieldVariants} type="submit" disabled={isSending} className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-cyanGlow px-5 py-3 font-semibold text-white transition hover:-translate-y-1 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 sm:w-fit">
                 {isSending ? "Sending..." : "Send Message"} <Send size={18} />
               </motion.button>
             </motion.form>

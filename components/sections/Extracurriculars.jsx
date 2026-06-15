@@ -31,8 +31,8 @@ export default function Extracurriculars() {
             <MotionCard key={title} delay={index * 0.05} className="p-4 sm:p-6">
               <Icon className="mb-4 text-violetGlow sm:mb-5" size={26} />
               <p className="text-sm font-medium text-cyanGlow">{date}</p>
-              <h3 className="mt-2 text-xl font-semibold text-white sm:text-2xl">{title}</h3>
-              <p className="mt-3 text-sm leading-6 text-slate-300 sm:text-base sm:leading-7">{description}</p>
+              <h3 className="text-strong mt-2 text-xl font-semibold sm:text-2xl">{title}</h3>
+              <p className="text-muted mt-3 text-sm leading-6 sm:text-base sm:leading-7">{description}</p>
             </MotionCard>
           ))}
         </div>

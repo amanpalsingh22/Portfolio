@@ -21,7 +21,7 @@ export default function Certificates() {
           {certificates.map((certificate, index) => (
             <MotionCard key={certificate} delay={index * 0.04} className="p-4 sm:p-6">
               <Award className="mb-4 text-greenGlow sm:mb-5" size={26} />
-              <h3 className="text-base font-semibold leading-7 text-white sm:text-lg">{certificate}</h3>
+              <h3 className="text-strong text-base font-semibold leading-7 sm:text-lg">{certificate}</h3>
             </MotionCard>
           ))}
         </div>

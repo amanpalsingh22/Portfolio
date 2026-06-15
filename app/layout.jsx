@@ -1,5 +1,16 @@
 import "./globals.css";
 
+const themeScript = `
+  try {
+    const savedTheme = window.localStorage.getItem("theme");
+    const theme = savedTheme === "dark" ? "dark" : "light";
+    document.documentElement.classList.toggle("dark", theme === "dark");
+    document.documentElement.dataset.theme = theme;
+  } catch (error) {
+    document.documentElement.dataset.theme = "light";
+  }
+`;
+
 export const metadata = {
   title: "Amanpal Singh | Full-Stack Web Developer Portfolio",
   description:
@@ -16,8 +27,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <body>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        {children}
+      </body>
     </html>
   );
 }

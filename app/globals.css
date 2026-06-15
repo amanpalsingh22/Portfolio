@@ -3,8 +3,86 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
   scroll-behavior: smooth;
+  --color-ink: 15 23 42;
+  --color-panel: 255 255 255;
+  --color-cyan-glow: 8 145 178;
+  --color-blue-glow: 37 99 235;
+  --color-violet-glow: 124 58 237;
+  --color-green-glow: 22 163 74;
+  --page-bg: linear-gradient(180deg, #f8fbff 0%, #eef7ff 46%, #f8fafc 100%);
+  --text-strong: #0f172a;
+  --text-primary: #1e293b;
+  --text-muted: #475569;
+  --text-subtle: #64748b;
+  --text-inverted: #f8fafc;
+  --border-soft: rgba(15, 23, 42, 0.12);
+  --border-medium: rgba(8, 145, 178, 0.24);
+  --surface-glass: rgba(255, 255, 255, 0.9);
+  --surface-soft: rgba(248, 250, 252, 0.78);
+  --surface-raised: rgba(255, 255, 255, 0.92);
+  --surface-tint: rgba(8, 145, 178, 0.08);
+  --surface-deep: rgba(248, 250, 252, 0.94);
+  --input-bg: rgba(255, 255, 255, 0.78);
+  --code-bg: rgba(15, 23, 42, 0.06);
+  --selection-bg: rgba(8, 145, 178, 0.2);
+  --selection-text: #0f172a;
+  --grid-line: rgba(8, 145, 178, 0.08);
+  --ambient-mask: linear-gradient(to bottom, rgba(0, 0, 0, 0.52), transparent 86%);
+  --shadow-glass: 0 18px 55px rgba(15, 23, 42, 0.1);
+  --shadow-glow: 0 18px 50px rgba(8, 145, 178, 0.16);
+  --shadow-violet: 0 18px 50px rgba(124, 58, 237, 0.14);
+  --focus-shadow: 0 0 0 3px rgba(8, 145, 178, 0.16);
+  --preview-stage: rgba(255, 255, 255, 0.84);
+  --preview-cell: rgba(15, 23, 42, 0.08);
+  --modal-stage: radial-gradient(circle at center, rgba(8, 145, 178, 0.08), rgba(248, 250, 252, 0.96) 62%);
+  --logo-outer: #dbeafe;
+  --logo-surface-start: #ffffff;
+  --logo-surface-mid: #eef6ff;
+  --logo-surface-end: #dff3ff;
+  --logo-letter-secondary: #0f172a;
+}
+
+.dark {
+  color-scheme: dark;
+  --color-ink: 7 10 16;
+  --color-panel: 16 20 31;
+  --color-cyan-glow: 125 211 252;
+  --color-blue-glow: 147 197 253;
+  --color-violet-glow: 196 181 253;
+  --color-green-glow: 134 239 172;
+  --page-bg: linear-gradient(180deg, #070a10 0%, #0b1018 48%, #070a10 100%);
+  --text-strong: #f8fafc;
+  --text-primary: #e2e8f0;
+  --text-muted: #cbd5e1;
+  --text-subtle: #94a3b8;
+  --text-inverted: #070a10;
+  --border-soft: rgba(148, 163, 184, 0.14);
+  --border-medium: rgba(125, 211, 252, 0.22);
+  --surface-glass: rgba(15, 23, 42, 0.62);
+  --surface-soft: rgba(255, 255, 255, 0.04);
+  --surface-raised: rgba(15, 23, 42, 0.76);
+  --surface-tint: rgba(125, 211, 252, 0.1);
+  --surface-deep: rgba(2, 6, 23, 0.36);
+  --input-bg: rgba(255, 255, 255, 0.1);
+  --code-bg: rgba(0, 0, 0, 0.25);
+  --selection-bg: rgba(125, 211, 252, 0.28);
+  --selection-text: #f8fafc;
+  --grid-line: rgba(148, 163, 184, 0.04);
+  --ambient-mask: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent 86%);
+  --shadow-glass: 0 18px 55px rgba(0, 0, 0, 0.22);
+  --shadow-glow: 0 18px 50px rgba(0, 0, 0, 0.28);
+  --shadow-violet: 0 18px 50px rgba(0, 0, 0, 0.24);
+  --focus-shadow: 0 0 0 3px rgba(125, 211, 252, 0.16);
+  --preview-stage: rgba(7, 10, 16, 0.8);
+  --preview-cell: rgba(255, 255, 255, 0.1);
+  --modal-stage: radial-gradient(circle at center, rgba(24, 215, 255, 0.08), rgba(5, 7, 18, 0.86) 62%);
+  --logo-outer: #060a12;
+  --logo-surface-start: #0d1422;
+  --logo-surface-mid: #080c14;
+  --logo-surface-end: #101827;
+  --logo-letter-secondary: #f8fafc;
 }
 
 * {
@@ -14,14 +92,14 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background: linear-gradient(180deg, #070a10 0%, #0b1018 48%, #070a10 100%);
-  color: #f8fafc;
+  background: var(--page-bg);
+  color: var(--text-primary);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 ::selection {
-  background: rgba(125, 211, 252, 0.28);
-  color: #f8fafc;
+  background: var(--selection-bg);
+  color: var(--selection-text);
 }
 
 section {
@@ -34,10 +112,10 @@ section {
   z-index: -1;
   overflow: hidden;
   background-image:
-    linear-gradient(rgba(148, 163, 184, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(148, 163, 184, 0.04) 1px, transparent 1px);
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size: 44px 44px;
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent 86%);
+  mask-image: var(--ambient-mask);
 }
 
 .ambient-shell::after {
@@ -54,9 +132,10 @@ section {
 }
 
 .glass {
-  border: 1px solid rgba(148, 163, 184, 0.14);
-  background: rgba(15, 23, 42, 0.62);
-  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.22);
+  border: 1px solid var(--border-soft);
+  color: var(--text-primary);
+  background: var(--surface-glass);
+  box-shadow: var(--shadow-glass);
   backdrop-filter: blur(18px);
 }
 
@@ -70,6 +149,81 @@ section {
 
 .section-pad {
   padding-block: 5.5rem;
+}
+
+.text-strong {
+  color: var(--text-strong) !important;
+}
+
+.text-primary {
+  color: var(--text-primary) !important;
+}
+
+.text-muted {
+  color: var(--text-muted) !important;
+}
+
+.text-subtle {
+  color: var(--text-subtle) !important;
+}
+
+.text-inverted {
+  color: var(--text-inverted) !important;
+}
+
+.border-soft {
+  border-color: var(--border-soft);
+}
+
+.border-medium {
+  border-color: var(--border-medium);
+}
+
+.bg-soft {
+  background: var(--surface-soft);
+}
+
+.bg-raised {
+  background: var(--surface-raised);
+}
+
+.bg-tint {
+  background: var(--surface-tint);
+}
+
+.bg-deep {
+  background: var(--surface-deep);
+}
+
+.bg-preview-stage {
+  background: var(--preview-stage);
+}
+
+.bg-preview-cell {
+  background: var(--preview-cell);
+}
+
+.bg-code {
+  background: var(--code-bg);
+}
+
+.bg-modal-stage {
+  background: var(--modal-stage);
+}
+
+.input-field {
+  border: 1px solid var(--border-soft);
+  background: var(--input-bg);
+  color: var(--text-strong);
+}
+
+.input-field::placeholder {
+  color: var(--text-subtle);
+}
+
+.input-field:focus {
+  border-color: rgb(var(--color-cyan-glow));
+  box-shadow: var(--focus-shadow);
 }
 
 @media (max-width: 768px) {
