@@ -17,11 +17,11 @@ export const metadata = {
     "Portfolio of Amanpal Singh, a full-stack web developer skilled in React, Next.js, Tailwind CSS, REST APIs, AI APIs, and real-time web applications.",
   icons: {
     icon: [
-      { url: "/icon.svg", type: "image/svg+xml" },
-      { url: "/logo.svg", type: "image/svg+xml" }
+      { url: "/icon.png", type: "image/png", sizes: "477x477" },
+      { url: "/logo.png", type: "image/png", sizes: "477x477" }
     ],
-    shortcut: "/icon.svg",
-    apple: "/logo.svg"
+    shortcut: "/icon.png",
+    apple: [{ url: "/logo.png", type: "image/png", sizes: "477x477" }]
   }
 };
 

@@ -4,11 +4,11 @@ import { motion } from "framer-motion";
 import { ArrowDown, Download, Github, Linkedin, Mail } from "lucide-react";
 import BrandLogo from "../ui/BrandLogo";
 
-const badges = ["React", "Next.js", "Tailwind CSS", "REST APIs", "AI APIs", "Socket.IO"];
-const metrics = [
-  ["Realtime", "Socket.IO"],
-  ["AI APIs", "LLM tools"],
-  ["Dashboards", "Role-based UI"]
+const badges = ["Next.js", "AI APIs", "Socket.IO"];
+const focusAreas = [
+  ["Product UI", "Clean interfaces"],
+  ["AI Workflows", "Practical automations"],
+  ["Realtime Apps", "Live interactions"]
 ];
 
 export default function Hero() {
@@ -20,7 +20,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-cyanGlow sm:mb-5 sm:tracking-[0.28em]">
+          <p className="mb-4 text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-cyanGlow sm:mb-5 sm:tracking-[0.28em]">
             Portfolio / Full-stack developer
           </p>
           <h1 className="text-strong max-w-3xl text-4xl font-semibold leading-tight tracking-tight sm:text-5xl md:text-7xl">
@@ -54,14 +54,15 @@ export default function Hero() {
         </motion.div>
 
         <motion.div
-          className="glass relative rounded-lg p-4 sm:p-6"
+          className="glass relative overflow-hidden rounded-lg p-4 shadow-[0_18px_45px_rgba(15,23,42,0.08)] sm:p-6 dark:shadow-[0_18px_55px_rgba(0,0,0,0.22)]"
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="border-soft flex flex-col gap-4 border-b pb-4 sm:flex-row sm:items-center sm:justify-between sm:pb-5">
+          <div className="pointer-events-none absolute -right-20 -top-20 h-44 w-44 rounded-full bg-cyanGlow/10 blur-3xl" />
+          <div className="border-soft relative flex flex-col gap-4 border-b pb-4 sm:flex-row sm:items-center sm:justify-between sm:pb-5">
             <div className="flex items-center gap-4">
-              <BrandLogo decorative idPrefix="hero-logo" className="h-12 w-12 shrink-0 drop-shadow-[0_0_24px_rgba(125,211,252,0.2)] sm:h-14 sm:w-14" />
+              <BrandLogo decorative priority sizes="64px" className="h-14 w-14 shrink-0 sm:h-16 sm:w-16" />
               <div>
                 <p className="text-subtle text-sm">Current focus</p>
                 <h2 className="text-strong mt-1 text-xl font-semibold tracking-tight sm:text-2xl">Practical product interfaces</h2>
@@ -72,29 +73,24 @@ export default function Hero() {
             </span>
           </div>
 
-          <div className="mt-6 grid gap-3 sm:grid-cols-3">
-            {metrics.map(([label, value]) => (
-              <div key={label} className="border-soft bg-soft rounded-md border p-4">
-                <p className="text-subtle text-xs uppercase tracking-[0.18em]">{label}</p>
-                <p className="text-strong mt-2 text-lg font-semibold">{value}</p>
+          <div className="relative mt-5 grid gap-3">
+            {focusAreas.map(([label, value]) => (
+              <div key={label} className="border-soft bg-soft flex items-center justify-between gap-4 rounded-md border px-4 py-3">
+                <p className="text-subtle text-xs font-semibold uppercase tracking-[0.18em]">{label}</p>
+                <p className="text-strong text-sm font-semibold sm:text-base">{value}</p>
               </div>
             ))}
           </div>
 
-          <pre className="border-soft bg-code text-primary mt-5 overflow-x-auto rounded-md border p-3 text-xs leading-6 sm:p-4 sm:text-sm sm:leading-7">
-{`const focus = [
-  "clean UI",
-  "API workflows",
-  "real-world dashboards"
-];`}
-          </pre>
-
-          <div className="mt-5 flex flex-wrap gap-2">
-            {badges.map((badge) => (
-              <span key={badge} className="border-soft bg-soft text-primary rounded-md border px-2.5 py-1.5 text-xs sm:px-3 sm:py-2 sm:text-sm">
-                {badge}
-              </span>
-            ))}
+          <div className="border-soft relative mt-5 border-t pt-5">
+            <p className="text-subtle mb-3 text-xs font-semibold uppercase tracking-[0.18em]">Selected stack</p>
+            <div className="flex flex-wrap gap-2">
+              {badges.map((badge) => (
+                <span key={badge} className="border-soft bg-soft text-primary rounded-md border px-3 py-2 text-sm">
+                  {badge}
+                </span>
+              ))}
+            </div>
           </div>
         </motion.div>
       </div>

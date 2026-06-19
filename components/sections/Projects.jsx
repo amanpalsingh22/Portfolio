@@ -60,13 +60,24 @@ const projects = [
     title: "AI Quiz Generator",
     duration: "April - May 2025",
     description:
-      "Built an AI-powered quiz generation tool where users can upload PDFs and automatically generate quizzes from the PDF content. Integrated ChatGPT API to create questions and built a responsive frontend for quiz creation and management.",
+      "Built Quizzy, an AI-powered quiz workspace where users can generate quizzes from topics or readable PDFs, save generated quizzes, and attempt them through a polished answer flow.",
     features: [
-      "PDF upload",
-      "AI-generated quiz questions",
-      "ChatGPT API integration"
+      "Topic and PDF quiz generation",
+      "Saved quiz library and replay flow",
+      "In-progress quiz attempt screen",
+      "Secure login and profile workspace"
     ],
-    accent: "violet"
+    accent: "violet",
+    demoUrl: "https://quizzy.amanpalsingh.in",
+    demoLabel: "Live Demo",
+    gallerySummary: "Quizzy screens covering login, topic generation, PDF upload, saved quiz library, and the in-progress quiz attempt experience.",
+    screenshots: [
+      { src: "/projects/ai-quiz/generate-topic.png", label: "Topic builder" },
+      { src: "/projects/ai-quiz/generate-pdf.png", label: "PDF builder" },
+      { src: "/projects/ai-quiz/my-quizzes.png", label: "My quizzes" },
+      { src: "/projects/ai-quiz/quiz-attempt.png", label: "Quiz attempt" },
+      { src: "/projects/ai-quiz/login.png", label: "Login" }
+    ]
   }
 ];
 

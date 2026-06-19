@@ -69,7 +69,7 @@ export default function Navbar() {
     <header className="fixed left-0 right-0 top-0 z-50 px-3 pt-3 sm:px-4 sm:pt-4">
       <nav className="glass mx-auto flex max-w-7xl items-center justify-between rounded-lg px-3 py-2.5 sm:px-5 sm:py-3">
         <a href="#home" className="text-strong flex min-w-0 items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] sm:gap-3 sm:text-sm sm:tracking-[0.22em]">
-          <BrandLogo decorative idPrefix="navbar-logo" className="h-8 w-8 shrink-0 drop-shadow-[0_0_18px_rgba(125,211,252,0.18)] sm:h-9 sm:w-9" />
+          <BrandLogo decorative priority sizes="44px" className="h-10 w-10 shrink-0 sm:h-11 sm:w-11" />
           <span>
             Amanpal Singh<span className="text-cyanGlow">.</span>
           </span>

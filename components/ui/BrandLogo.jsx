@@ -1,67 +1,23 @@
-export default function BrandLogo({ className = "", decorative = false, idPrefix = "brand-logo" }) {
-  const accessibilityProps = decorative
-    ? { "aria-hidden": true }
-    : { role: "img", "aria-label": "Amanpal Singh logo" };
+import Image from "next/image";
 
+export default function BrandLogo({
+  className = "",
+  decorative = false,
+  priority = false,
+  sizes = "44px"
+}) {
   return (
-    <svg
-      viewBox="0 0 64 64"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-      {...accessibilityProps}
-    >
-      <rect x="3" y="3" width="58" height="58" rx="16" fill="var(--logo-outer)" />
-      <rect x="4" y="4" width="56" height="56" rx="15" fill={`url(#${idPrefix}-surface)`} />
-      <rect x="4.5" y="4.5" width="55" height="55" rx="14.5" stroke={`url(#${idPrefix}-border)`} strokeOpacity="0.9" />
-      <path d="M14 18.5H26" stroke="#7DD3FC" strokeWidth="2" strokeLinecap="round" opacity="0.72" />
-      <path d="M50 45.5H38" stroke="#86EFAC" strokeWidth="2" strokeLinecap="round" opacity="0.78" />
-      <path
-        d="M17.5 43L27.4 20.8C28.3 18.8 31.1 18.8 32 20.8L41.8 43"
-        stroke={`url(#${idPrefix}-mark)`}
-        strokeWidth="4.2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M22.8 35.2H36.7"
-        stroke={`url(#${idPrefix}-mark)`}
-        strokeWidth="4.2"
-        strokeLinecap="round"
-      />
-      <path
-        d="M43.6 21.5H37.7C35.2 21.5 33.6 22.8 33.6 24.8C33.6 27 35.2 28.2 38.9 29.2L41.2 29.8C44.8 30.8 46.8 32.9 46.8 36.1C46.8 40.2 43.7 42.5 38.9 42.5H32.7"
-        stroke="var(--logo-letter-secondary)"
-        strokeOpacity="0.92"
-        strokeWidth="3.2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M49.2 17.5L45.6 27.8"
-        stroke="#86EFAC"
-        strokeWidth="2"
-        strokeLinecap="round"
-        opacity="0.9"
-      />
-      <circle cx="49.2" cy="34.2" r="1.8" fill="#7DD3FC" />
-      <defs>
-        <linearGradient id={`${idPrefix}-surface`} x1="11" y1="8" x2="54" y2="58" gradientUnits="userSpaceOnUse">
-          <stop stopColor="var(--logo-surface-start)" />
-          <stop offset="0.58" stopColor="var(--logo-surface-mid)" />
-          <stop offset="1" stopColor="var(--logo-surface-end)" />
-        </linearGradient>
-        <linearGradient id={`${idPrefix}-border`} x1="7" y1="6" x2="58" y2="59" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#7DD3FC" />
-          <stop offset="0.5" stopColor="#93C5FD" />
-          <stop offset="1" stopColor="#86EFAC" />
-        </linearGradient>
-        <linearGradient id={`${idPrefix}-mark`} x1="17" y1="20" x2="42" y2="44" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#7DD3FC" />
-          <stop offset="0.55" stopColor="#93C5FD" />
-          <stop offset="1" stopColor="#C4B5FD" />
-        </linearGradient>
-      </defs>
-    </svg>
+    <Image
+      src="/logo.png"
+      alt={decorative ? "" : "Amanpal Singh logo"}
+      width={477}
+      height={477}
+      sizes={sizes}
+      priority={priority}
+      unoptimized
+      draggable={false}
+      aria-hidden={decorative ? true : undefined}
+      className={`block select-none rounded-[18%] object-contain ${className}`}
+    />
   );
 }
