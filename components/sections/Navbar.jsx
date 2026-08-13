@@ -10,9 +10,6 @@ const navItems = [
   ["Experience", "#experience"],
   ["Skills", "#skills"],
   ["About", "#about"],
-  ["Certificates", "#certificates"],
-  ["Education", "#education"],
-  ["Extracurriculars", "#extracurriculars"],
   ["Contact", "#contact"]
 ];
 

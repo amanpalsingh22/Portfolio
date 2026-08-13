@@ -1,4 +1,5 @@
 import "./globals.css";
+import PlausibleAnalytics from "@/components/analytics/PlausibleAnalytics";
 
 const themeScript = `
   try {
@@ -30,6 +31,7 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <body>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <PlausibleAnalytics />
         {children}
       </body>
     </html>

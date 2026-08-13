@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowDown, Download, Github, Linkedin, Mail } from "lucide-react";
 import BrandLogo from "../ui/BrandLogo";
+import { trackEvent } from "@/lib/analytics";
 
 const badges = ["Next.js", "AI APIs", "Socket.IO"];
 const focusAreas = [
@@ -21,16 +22,16 @@ export default function Hero() {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
           <p className="mb-4 text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-cyanGlow sm:mb-5 sm:tracking-[0.28em]">
-            Portfolio / Full-stack developer
+            Amanpal Singh / Portfolio
           </p>
           <h1 className="text-strong max-w-3xl text-4xl font-semibold leading-tight tracking-tight sm:text-5xl md:text-7xl">
-            Amanpal Singh
+            Full-Stack Developer.
           </h1>
           <p className="text-primary mt-4 max-w-3xl text-xl font-medium leading-tight sm:text-2xl md:mt-5 md:text-3xl">
             Building clean, responsive, AI-powered, and real-time web applications.
           </p>
           <p className="text-muted mt-4 max-w-2xl text-base leading-7 sm:text-lg sm:leading-8 md:mt-5">
-            I build responsive web applications, real-time systems, AI-powered tools, and role-based dashboards using React, Next.js, Tailwind CSS, REST APIs, and modern development workflows.
+            I build complete web products—from real-time chat systems and AI tools to role-based dashboards—using React, Next.js, APIs, and modern backend integrations.
           </p>
           <div className="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap">
             <a href="#projects" className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-ink px-5 py-3 font-semibold text-white transition hover:-translate-y-0.5 hover:bg-cyanGlow sm:w-auto dark:bg-white dark:text-ink dark:hover:bg-cyan-100">
@@ -39,7 +40,7 @@ export default function Hero() {
             <a href="#contact" className="border-soft text-strong hover:bg-tint inline-flex w-full items-center justify-center gap-2 rounded-md border px-5 py-3 font-semibold transition hover:-translate-y-0.5 hover:border-cyanGlow/60 sm:w-auto">
               Contact Me <Mail size={18} />
             </a>
-            <a href="/Amanpal-Singh-CV.pdf" download className="border-soft text-strong hover:bg-soft inline-flex w-full items-center justify-center gap-2 rounded-md border px-5 py-3 font-semibold transition hover:-translate-y-0.5 hover:border-violetGlow/60 sm:w-auto">
+            <a href="/Amanpal-Singh-CV.pdf" download onClick={() => trackEvent("CV Download")} className="border-soft text-strong hover:bg-soft inline-flex w-full items-center justify-center gap-2 rounded-md border px-5 py-3 font-semibold transition hover:-translate-y-0.5 hover:border-violetGlow/60 sm:w-auto">
               Download CV <Download size={18} />
             </a>
           </div>

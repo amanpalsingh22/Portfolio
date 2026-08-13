@@ -4,9 +4,10 @@ import Image from "next/image";
 import { createPortal } from "react-dom";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, ExternalLink, Github, Images, Maximize2, MonitorUp, Radio, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, ExternalLink, Github, Images, Maximize2, Radio, X } from "lucide-react";
 import MotionCard from "@/components/ui/MotionCard";
 import SectionHeader from "@/components/ui/SectionHeader";
+import { trackEvent } from "@/lib/analytics";
 
 const projects = [
   {
@@ -46,7 +47,7 @@ const projects = [
     ],
     accent: "cyan",
     githubUrl: "https://github.com/amanpalsingh22/Chatter",
-    demoUrl: "https://chatter-72zw.onrender.com",
+    demoUrl: "https://chatty.amanpalsingh.in",
     demoLabel: "Live Demo",
     gallerySummary: "Polished MacBook mockups showing the chat workspace, login flow, settings, and profile screens.",
     screenshots: [
@@ -355,7 +356,7 @@ function ProjectScreenshots({ screenshots, title, summary }) {
   );
 }
 
-function ProjectAction({ href, icon: Icon, label }) {
+function ProjectAction({ href, icon: Icon, label, onClick }) {
   const className = "inline-flex min-h-10 w-full items-center justify-center gap-1.5 rounded-md border px-3 py-2 text-xs font-semibold transition";
 
   if (!href) {
@@ -375,6 +376,7 @@ function ProjectAction({ href, icon: Icon, label }) {
       href={href}
       target="_blank"
       rel="noreferrer"
+      onClick={onClick}
       className={`${className} border-cyanGlow/25 bg-cyanGlow/10 text-cyanGlow hover:-translate-y-0.5 hover:border-cyanGlow hover:shadow-glow`}
     >
       <Icon size={14} /> {label}
@@ -412,10 +414,14 @@ export default function Projects() {
                   ))}
                 </ul>
               </div>
-              <div className="mt-5 grid grid-cols-1 gap-2 min-[420px]:grid-cols-3 sm:mt-6">
-                <ProjectAction href={project.detailsUrl} icon={MonitorUp} label="Details" />
+              <div className="mt-5 grid grid-cols-1 gap-2 min-[420px]:grid-cols-2 sm:mt-6">
                 <ProjectAction href={project.githubUrl} icon={Github} label="GitHub" />
-                <ProjectAction href={project.demoUrl} icon={Radio} label={project.demoLabel || "Demo"} />
+                <ProjectAction
+                  href={project.demoUrl}
+                  icon={Radio}
+                  label={project.demoLabel || "Demo"}
+                  onClick={() => trackEvent("Project Demo Click", { project: project.title })}
+                />
               </div>
             </MotionCard>
           ))}

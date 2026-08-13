@@ -4,11 +4,12 @@ import { motion } from "framer-motion";
 import SectionHeader from "@/components/ui/SectionHeader";
 
 const skillGroups = {
-  Languages: ["C++", "C", "JavaScript"],
-  Frontend: ["HTML", "CSS", "React", "Next.js", "Tailwind CSS", "Bootstrap", "DaisyUI", "Material UI"],
-  "Backend & APIs": ["REST API", "NoSQL", "MySQL", "Socket.IO", "API Integration"],
-  "AI & Tools": ["OpenAI API", "Anthropic API", "ChatGPT API", "Git", "GitHub", "Cloudinary"],
-  "Soft Skills": ["Problem Solving", "Team Player", "Project Management", "Adaptability"]
+  Languages: ["JavaScript", "C++", "C"],
+  Frontend: ["React", "Next.js", "Tailwind CSS", "Material UI", "Bootstrap", "HTML", "CSS"],
+  "Backend & Data": ["Node.js", "Express.js", "REST APIs", "Socket.IO", "MongoDB", "MySQL"],
+  "AI & Integrations": ["OpenAI API", "Anthropic API", "Cloudinary"],
+  "Developer Tools": ["Git", "GitHub"],
+  "Professional Skills": ["Problem Solving", "Collaboration", "Project Management", "Adaptability"]
 };
 
 export default function Skills() {

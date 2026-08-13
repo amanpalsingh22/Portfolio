@@ -41,6 +41,11 @@ Create `.env.local` from `.env.example`.
 RESEND_API_KEY=your_resend_api_key_here
 CONTACT_RECEIVER_EMAIL=amanpalsingh878@gmail.com
 CONTACT_FROM_EMAIL=Portfolio Contact <onboarding@resend.dev>
+NEXT_PUBLIC_PLAUSIBLE_SCRIPT_URL=https://plausible.io/js/pa-XXXXX.js
 ```
 
 For production email delivery, use a sender address from a verified Resend domain.
+
+The Plausible script URL is optional. When configured, the portfolio records anonymous
+`Project Demo Click`, `CV Download`, and successful `Contact Form Submitted` events.
+No contact-form values are included in analytics events.

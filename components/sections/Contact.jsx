@@ -5,6 +5,7 @@ import { Github, Linkedin, Mail, MapPin, Phone, Send } from "lucide-react";
 import { useState } from "react";
 import MotionCard from "@/components/ui/MotionCard";
 import SectionHeader from "@/components/ui/SectionHeader";
+import { trackEvent } from "@/lib/analytics";
 
 const links = [
   ["Email", "amanpalsingh878@gmail.com", "mailto:amanpalsingh878@gmail.com", Mail],
@@ -67,6 +68,7 @@ export default function Contact() {
         throw new Error(data.message || "Unable to send message.");
       }
 
+      trackEvent("Contact Form Submitted");
       setStatus({ type: "success", message: "Message sent. I will get back to you soon." });
       setForm({ name: "", email: "", subject: "", message: "" });
     } catch (error) {
